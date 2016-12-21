@@ -12,7 +12,7 @@ int main( int argc, char* argv[] )
 	if( argc != 3 )
 	{
 		perror("Usage: ./raw2pyramid3d input_raw_file " \
-					 "output_spbt_file");
+					 "output_pyramid3d_file_(spbt)");
 		exit(1);
 	}
 
@@ -57,4 +57,5 @@ int main( int argc, char* argv[] )
   /* clean up */
   QccWAVSubbandPyramid3DFree( &image_subband_pyramid );
   free (buf);
+
 }
