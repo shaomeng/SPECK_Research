@@ -16,6 +16,7 @@ int main( int argc, char* argv[] )
 		exit(1);
 	}
 
+  // verify size
 	std::string inFilename = argv[1];
 	FILE* f = fopen (argv[1],"rb");
 	fseek (f, 0, SEEK_END);
@@ -23,12 +24,14 @@ int main( int argc, char* argv[] )
 	assert (size % 6 == 0);
 	assert (size % 4 == 0);
 
+  // read out raw data
 	fseek( f, 0, SEEK_SET );
 	long nVals = size / 4;
 	float* buf = new float[ nVals ];
 	fread( buf, sizeof(float), nVals, f );
 	fclose( f );
 
+  // split into 6 files
 	for( long face = 0; face < 6; face++ )
 	{
 		long offset = face * NX * NY * NZ;
