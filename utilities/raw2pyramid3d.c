@@ -21,8 +21,8 @@ int main( int argc, char* argv[] )
   
   /* set metadata */
   QccConvertToQccString( image_subband_pyramid.filename, argv[2] );
-  image_subband_pyramid.spatial_num_levels = 4;
-  image_subband_pyramid.temporal_num_levels = 2;
+  image_subband_pyramid.spatial_num_levels = 0;
+  image_subband_pyramid.temporal_num_levels = 0;
   image_subband_pyramid.num_frames = NZ;
   image_subband_pyramid.num_rows = NY;
   image_subband_pyramid.num_cols = NX;
