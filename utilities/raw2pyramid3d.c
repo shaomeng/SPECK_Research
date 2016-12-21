@@ -11,8 +11,8 @@ int main( int argc, char* argv[] )
 {
 	if( argc != 3 )
 	{
-		perror("Usage: ./raw2WAVSubbandPyramid3D input_raw_file " \
-					 "output_WAVSubbandPyramid3D_file");
+		perror("Usage: ./raw2pyramid3d input_raw_file " \
+					 "output_spbt_file");
 		exit(1);
 	}
 
