@@ -5,15 +5,14 @@ ifeq ($(ARCH), Darwin)
   CC=clang
   CXX=clang++
   QCC_DIR=/Users/shaomeng/Install/QccPack-0.61
-  INC_DIR=$(QCC_DIR)/include
-  LIB_DIR=$(QCC_DIR)/lib
 else
   CC=gcc
   CXX=g++
-  INC_DIR=/glade/u/home/shaomeng/lib_gnu/include
-  LIB_DIR=/glade/u/home/shaomeng/lib_gnu/lib
+  QCC_DIR=/glade/u/home/shaomeng/lib_gnu/QccPack-0.61
 endif
 
+INC_DIR=$(QCC_DIR)/include
+LIB_DIR=$(QCC_DIR)/lib
 
 raw2faces: raw2faces.cpp
 	$(CXX) -std=c++11 -o bin/raw2faces raw2faces.cpp
