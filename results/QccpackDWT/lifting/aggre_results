@@ -1,0 +1,352 @@
+ABSORB:
+  RMSE             = 0.0
+  maxError         = 0.0
+  maxRelativeError = 0.0
+ANRAIN:
+  RMSE             = 3.4616694692e-13
+  maxError         = 2.5920599001e-11
+  maxRelativeError = 4.3663709448e-07
+ANSNOW:
+  RMSE             = 8.4179931025e-13
+  maxError         = 3.8596681406e-11
+  maxRelativeError = 9.4866154541e-05
+AQRAIN:
+  RMSE             = 5.464010913e-22
+  maxError         = 9.4867690092e-20
+  maxRelativeError = 0.0
+AQSNOW:
+  RMSE             = 9.6967537771e-22
+  maxError         = 6.0986372202e-20
+  maxRelativeError = 0.0
+AREI:
+  RMSE             = 7.2383980594e-16
+  maxError         = 2.7644553313e-14
+  maxRelativeError = 0.0
+AREL:
+  RMSE             = 1.4403962229e-16
+  maxError         = 1.0297318553e-14
+  maxRelativeError = 0.0
+AWNC:
+  RMSE             = 2.1546942339e-09
+  maxError         = 2.0675361156e-07
+  maxRelativeError = 0.0
+AWNI:
+  RMSE             = 1.0293454159e-12
+  maxError         = 5.0462745094e-11
+  maxRelativeError = 0.0
+bc_a1:
+  RMSE             = 0.0
+  maxError         = 0.0
+  maxRelativeError = 0.0
+CCN3:
+  RMSE             = 0.0
+  maxError         = 0.0
+  maxRelativeError = 0.0
+CLDFSNOW:
+  RMSE             = 1.9256290374e-18
+  maxError         = 2.2204460493e-16
+  maxRelativeError = 5.2547188716e-06
+CLDICE:
+  RMSE             = 1.4057381401e-22
+  maxError         = 6.468486555e-21
+  maxRelativeError = 6.7236355809e+16
+CLDLIQ:
+  RMSE             = 6.7663896717e-22
+  maxError         = 1.0842021725e-19
+  maxRelativeError = 4.521836488e+16
+CLOUD:
+  RMSE             = 7.6929986105e-18
+  maxError         = 2.2204460493e-16
+  maxRelativeError = 1.7886255591e-05
+CMFDQ:
+  RMSE             = 5.5696591199e-25
+  maxError         = 4.2160361846e-23
+  maxRelativeError = 2.020712697e+13
+CMFDQR:
+  RMSE             = 5.9117365773e-25
+  maxError         = 1.6440214674e-23
+  maxRelativeError = 0.26929843426
+CMFDT:
+  RMSE             = 7.9592624624e-22
+  maxError         = 5.4210108624e-20
+  maxRelativeError = 0.87472873926
+CONCLD:
+  RMSE             = 1.4883820593e-17
+  maxError         = 4.4408920985e-16
+  maxRelativeError = 0.022733809426
+DCQ:
+  RMSE             = 1.092204431e-25
+  maxError         = 2.6469779602e-23
+  maxRelativeError = 15534.316406
+dgnd_a01:
+  RMSE             = 0.0
+  maxError         = 0.0
+  maxRelativeError = 0.0
+dgnd_a02:
+  RMSE             = 0.0
+  maxError         = 0.0
+  maxRelativeError = 0.0
+dgnd_a03:
+  RMSE             = 0.0
+  maxError         = 0.0
+  maxRelativeError = 0.0
+dgnw_a01:
+  RMSE             = 0.0
+  maxError         = 0.0
+  maxRelativeError = 0.0
+dgnw_a02:
+  RMSE             = 0.0
+  maxError         = 0.0
+  maxRelativeError = 0.0
+dgnw_a03:
+  RMSE             = 0.0
+  maxError         = 0.0
+  maxRelativeError = 0.0
+DMS:
+  RMSE             = 3.5266256473e-29
+  maxError         = 3.2311742678e-27
+  maxRelativeError = 0.093418762088
+dst_a1:
+  RMSE             = 0.0
+  maxError         = 0.0
+  maxRelativeError = 0.0
+dst_a3:
+  RMSE             = 7.247919621e-30
+  maxError         = 3.2311742678e-27
+  maxRelativeError = 6.7723718189e-08
+DTCOND:
+  RMSE             = 1.012574784e-22
+  maxError         = 3.388131789e-21
+  maxRelativeError = 3.9700985283e+12
+DTV:
+  RMSE             = 1.2162414755e-22
+  maxError         = 2.195668218e-20
+  maxRelativeError = 7.793468626e-08
+EXTINCT:
+  RMSE             = 0.0
+  maxError         = 0.0
+  maxRelativeError = 0.0
+FICE:
+  RMSE             = 3.5679763518e-17
+  maxError         = 6.9388939039e-16
+  maxRelativeError = 347.96359253
+FREQI:
+  RMSE             = 1.0214468996e-17
+  maxError         = 2.671474153e-16
+  maxRelativeError = 0.0
+FREQL:
+  RMSE             = 1.6710412716e-17
+  maxError         = 1.0165479569e-15
+  maxRelativeError = 0.0
+FREQR:
+  RMSE             = 1.1466921616e-17
+  maxError         = 6.5919492087e-16
+  maxRelativeError = 0.0
+FREQS:
+  RMSE             = 1.6444700814e-17
+  maxError         = 5.5684623579e-16
+  maxRelativeError = 0.0
+H2O2:
+  RMSE             = 0.0
+  maxError         = 0.0
+  maxRelativeError = 0.0
+H2SO4:
+  RMSE             = 0.0
+  maxError         = 0.0
+  maxRelativeError = 0.0
+ICIMR:
+  RMSE             = 2.0431064857e-21
+  maxError         = 7.2659958597e-20
+  maxRelativeError = 3.3157776308e+17
+ICLDIWP:
+  RMSE             = 1.6384831346e-18
+  maxError         = 7.601358372e-17
+  maxRelativeError = 7.5993156052e+20
+ICLDTWP:
+  RMSE             = 1.4778008551e-18
+  maxError         = 9.7405400802e-17
+  maxRelativeError = 516891.9375
+ICWMR:
+  RMSE             = 5.0301769037e-21
+  maxError         = 2.4886439587e-19
+  maxRelativeError = 4.0832728247e+17
+IWC:
+  RMSE             = 2.3803374675e-22
+  maxError         = 1.7083948599e-20
+  maxRelativeError = 8.9185597197e+16
+LCLOUD:
+  RMSE             = 3.5266324433e-18
+  maxError         = 2.8284124175e-16
+  maxRelativeError = 8.6825722047e+15
+ncl_a1:
+  RMSE             = 0.0
+  maxError         = 0.0
+  maxRelativeError = 0.0
+ncl_a2:
+  RMSE             = 0.0
+  maxError         = 0.0
+  maxRelativeError = 0.0
+ncl_a3:
+  RMSE             = 9.0598995262e-31
+  maxError         = 2.0194839174e-28
+  maxRelativeError = 9.2517034034e-08
+num_a1:
+  RMSE             = 0.0
+  maxError         = 0.0
+  maxRelativeError = 0.0
+num_a2:
+  RMSE             = 0.0
+  maxError         = 0.0
+  maxRelativeError = 0.0
+num_a3:
+  RMSE             = 0.0
+  maxError         = 0.0
+  maxRelativeError = 0.0
+NUMICE:
+  RMSE             = 2.1971940118e-12
+  maxError         = 5.8207660913e-11
+  maxRelativeError = 56.917324066
+NUMLIQ:
+  RMSE             = 3.0782614115e-10
+  maxError         = 5.9604644775e-08
+  maxRelativeError = 5516.1757812
+OMEGA:
+  RMSE             = 0.0
+  maxError         = 0.0
+  maxRelativeError = 0.0
+OMEGAT:
+  RMSE             = 0.0
+  maxError         = 0.0
+  maxRelativeError = 0.0
+pom_a1:
+  RMSE             = 0.0
+  maxError         = 0.0
+  maxRelativeError = 0.0
+QC:
+  RMSE             = 1.2069986514e-24
+  maxError         = 4.2376575998e-23
+  maxRelativeError = 0.27360376716
+Q:
+  RMSE             = 0.0
+  maxError         = 0.0
+  maxRelativeError = 0.0
+QRL:
+  RMSE             = 0.0
+  maxError         = 0.0
+  maxRelativeError = 0.0
+QRS:
+  RMSE             = 0.0
+  maxError         = 0.0
+  maxRelativeError = 0.0
+QT:
+  RMSE             = 0.0
+  maxError         = 0.0
+  maxRelativeError = 0.0
+RELHUM:
+  RMSE             = 0.0
+  maxError         = 0.0
+  maxRelativeError = 0.0
+SL:
+  RMSE             = 0.0
+  maxError         = 0.0
+  maxRelativeError = 0.0
+SLV:
+  RMSE             = 0.0
+  maxError         = 0.0
+  maxRelativeError = 0.0
+SO2:
+  RMSE             = 0.0
+  maxError         = 0.0
+  maxRelativeError = 0.0
+so4_a1:
+  RMSE             = 0.0
+  maxError         = 0.0
+  maxRelativeError = 0.0
+so4_a2:
+  RMSE             = 0.0
+  maxError         = 0.0
+  maxRelativeError = 0.0
+so4_a3:
+  RMSE             = 0.0
+  maxError         = 0.0
+  maxRelativeError = 0.0
+soa_a1:
+  RMSE             = 0.0
+  maxError         = 0.0
+  maxRelativeError = 0.0
+soa_a2:
+  RMSE             = 4.58398686e-30
+  maxError         = 1.6155871339e-27
+  maxRelativeError = 2.5305530471e-07
+SOAG:
+  RMSE             = 0.0
+  maxError         = 0.0
+  maxRelativeError = 0.0
+TOT_CLD_VISTAU:
+  RMSE             = 3.1951115597e-17
+  maxError         = 2.7200464103e-15
+  maxRelativeError = 3783242.25
+TOT_ICLD_VISTAU:
+  RMSE             = 2.0244624394e-16
+  maxError         = 1.0794146576e-14
+  maxRelativeError = 279886.84375
+T:
+  RMSE             = 0.0
+  maxError         = 0.0
+  maxRelativeError = 0.0
+U:
+  RMSE             = 0.0
+  maxError         = 0.0
+  maxRelativeError = 0.0
+UU:
+  RMSE             = 0.0
+  maxError         = 0.0
+  maxRelativeError = 0.0
+VD01:
+  RMSE             = 1.3861126919e-25
+  maxError         = 2.5970563177e-23
+  maxRelativeError = 0.00026152195642
+VQ:
+  RMSE             = 0.0
+  maxError         = 0.0
+  maxRelativeError = 0.0
+V:
+  RMSE             = 0.0
+  maxError         = 0.0
+  maxRelativeError = 0.0
+VT:
+  RMSE             = 0.0
+  maxError         = 0.0
+  maxRelativeError = 0.0
+VU:
+  RMSE             = 0.0
+  maxError         = 0.0
+  maxRelativeError = 0.0
+VV:
+  RMSE             = 0.0
+  maxError         = 0.0
+  maxRelativeError = 0.0
+wat_a1:
+  RMSE             = 3.1284782673e-27
+  maxError         = 7.3509214592e-25
+  maxRelativeError = 9.4200075296e-08
+wat_a2:
+  RMSE             = 8.3681387925e-29
+  maxError         = 6.0395190904e-27
+  maxRelativeError = 0.0
+wat_a3:
+  RMSE             = 3.2150467616e-26
+  maxError         = 1.1061925106e-23
+  maxRelativeError = 0.0089371046051
+WSUB:
+  RMSE             = 0.0
+  maxError         = 0.0
+  maxRelativeError = 0.0
+WTKE:
+  RMSE             = 0.0
+  maxError         = 0.0
+  maxRelativeError = 0.0
+Z3:
+  RMSE             = 0.0
+  maxError         = 0.0
+  maxRelativeError = 0.0
