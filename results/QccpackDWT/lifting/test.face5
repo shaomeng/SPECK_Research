@@ -1,0 +1,528 @@
+ABSORB:
+Test results:
+  RMSE               = 0.0000000000e+00 
+  maxError           = 0.0000000000e+00 
+  maxRelativeError   = 0.0000000000e+00 
+
+ANRAIN:
+Test results:
+  RMSE               = 2.2983249089e-13 
+  maxError           = 1.0828671293e-11 
+  maxRelativeError   = 1.5821044030e-07 
+
+ANSNOW:
+Test results:
+  RMSE               = 1.5461012290e-13 
+  maxError           = 6.1390892370e-12 
+  maxRelativeError   = 4.5449455683e-06 
+
+AQRAIN:
+Test results:
+  RMSE               = 3.3323458118e-22 
+  maxError           = 1.5617169965e-20 
+  maxRelativeError   = 0.0000000000e+00 
+
+AQSNOW:
+Test results:
+  RMSE               = 1.6085763642e-22 
+  maxError           = 1.1223186551e-20 
+  maxRelativeError   = 0.0000000000e+00 
+
+AREI:
+Test results:
+  RMSE               = 5.9788212294e-16 
+  maxError           = 2.7644553313e-14 
+  maxRelativeError   = 0.0000000000e+00 
+
+AREL:
+Test results:
+  RMSE               = 3.6346531316e-17 
+  maxError           = 1.3322676296e-15 
+  maxRelativeError   = 0.0000000000e+00 
+
+AWNC:
+Test results:
+  RMSE               = 4.0149254586e-10 
+  maxError           = 1.9324943423e-08 
+  maxRelativeError   = 0.0000000000e+00 
+
+AWNI:
+Test results:
+  RMSE               = 4.0793988438e-13 
+  maxError           = 1.4324541553e-11 
+  maxRelativeError   = 0.0000000000e+00 
+
+bc_a1:
+Test results:
+  RMSE               = 0.0000000000e+00 
+  maxError           = 0.0000000000e+00 
+  maxRelativeError   = 0.0000000000e+00 
+
+CCN3:
+Test results:
+  RMSE               = 0.0000000000e+00 
+  maxError           = 0.0000000000e+00 
+  maxRelativeError   = 0.0000000000e+00 
+
+CLDFSNOW:
+Test results:
+  RMSE               = 4.0566775491e-19 
+  maxError           = 9.1476381930e-18 
+  maxRelativeError   = 5.2547188716e-06 
+
+CLDICE:
+Test results:
+  RMSE               = 5.0936733708e-23 
+  maxError           = 2.1969917069e-21 
+  maxRelativeError   = 2.9384274306e+16 
+
+CLDLIQ:
+Test results:
+  RMSE               = 2.2520089211e-22 
+  maxError           = 6.3469568401e-21 
+  maxRelativeError   = 4.1037510570e+16 
+
+CLOUD:
+Test results:
+  RMSE               = 5.5725439411e-18 
+  maxError           = 1.1657500048e-16 
+  maxRelativeError   = 1.7886255591e-05 
+
+CMFDQ:
+Test results:
+  RMSE               = 1.1625799074e-25 
+  maxError           = 5.2920576055e-24 
+  maxRelativeError   = 3.0607927734e+04 
+
+CMFDQR:
+Test results:
+  RMSE               = 3.4202861972e-26 
+  maxError           = 1.9991780460e-24 
+  maxRelativeError   = 9.9068589043e-04 
+
+CMFDT:
+Test results:
+  RMSE               = 3.2688055768e-22 
+  maxError           = 1.3552527156e-20 
+  maxRelativeError   = 3.6999008153e-03 
+
+CONCLD:
+Test results:
+  RMSE               = 7.0434216462e-18 
+  maxError           = 2.7755575616e-16 
+  maxRelativeError   = 1.5155178262e-03 
+
+DCQ:
+Test results:
+  RMSE               = 2.1386485880e-26 
+  maxError           = 8.2718061255e-25 
+  maxRelativeError   = 8.8852695312e+03 
+
+dgnd_a01:
+Test results:
+  RMSE               = 0.0000000000e+00 
+  maxError           = 0.0000000000e+00 
+  maxRelativeError   = 0.0000000000e+00 
+
+dgnd_a02:
+Test results:
+  RMSE               = 0.0000000000e+00 
+  maxError           = 0.0000000000e+00 
+  maxRelativeError   = 0.0000000000e+00 
+
+dgnd_a03:
+Test results:
+  RMSE               = 0.0000000000e+00 
+  maxError           = 0.0000000000e+00 
+  maxRelativeError   = 0.0000000000e+00 
+
+dgnw_a01:
+Test results:
+  RMSE               = 0.0000000000e+00 
+  maxError           = 0.0000000000e+00 
+  maxRelativeError   = 0.0000000000e+00 
+
+dgnw_a02:
+Test results:
+  RMSE               = 0.0000000000e+00 
+  maxError           = 0.0000000000e+00 
+  maxRelativeError   = 0.0000000000e+00 
+
+dgnw_a03:
+Test results:
+  RMSE               = 0.0000000000e+00 
+  maxError           = 0.0000000000e+00 
+  maxRelativeError   = 0.0000000000e+00 
+
+DMS:
+Test results:
+  RMSE               = 1.5197708653e-30 
+  maxError           = 1.0097419587e-28 
+  maxRelativeError   = 4.1169397533e-02 
+
+dst_a1:
+Test results:
+  RMSE               = 0.0000000000e+00 
+  maxError           = 0.0000000000e+00 
+  maxRelativeError   = 0.0000000000e+00 
+
+dst_a3:
+Test results:
+  RMSE               = 7.2479196210e-30 
+  maxError           = 3.2311742678e-27 
+  maxRelativeError   = 6.0538908997e-08 
+
+DTCOND:
+Test results:
+  RMSE               = 7.0369513663e-23 
+  maxError           = 1.6940658945e-21 
+  maxRelativeError   = 3.9700985283e+12 
+
+DTV:
+Test results:
+  RMSE               = 3.8470045001e-23 
+  maxError           = 1.2887473944e-21 
+  maxRelativeError   = 0.0000000000e+00 
+
+EXTINCT:
+Test results:
+  RMSE               = 0.0000000000e+00 
+  maxError           = 0.0000000000e+00 
+  maxRelativeError   = 0.0000000000e+00 
+
+FICE:
+Test results:
+  RMSE               = 1.3977794666e-17 
+  maxError           = 3.3438150252e-16 
+  maxRelativeError   = 3.3224475384e-01 
+
+FREQI:
+Test results:
+  RMSE               = 9.1374626461e-18 
+  maxError           = 2.0122792321e-16 
+  maxRelativeError   = 0.0000000000e+00 
+
+FREQL:
+Test results:
+  RMSE               = 3.3648082871e-18 
+  maxError           = 1.1937065919e-16 
+  maxRelativeError   = 0.0000000000e+00 
+
+FREQR:
+Test results:
+  RMSE               = 6.9913164959e-18 
+  maxError           = 2.4719809533e-16 
+  maxRelativeError   = 0.0000000000e+00 
+
+FREQS:
+Test results:
+  RMSE               = 8.3837924153e-18 
+  maxError           = 2.2247828579e-16 
+  maxRelativeError   = 0.0000000000e+00 
+
+H2O2:
+Test results:
+  RMSE               = 0.0000000000e+00 
+  maxError           = 0.0000000000e+00 
+  maxRelativeError   = 0.0000000000e+00 
+
+H2SO4:
+Test results:
+  RMSE               = 0.0000000000e+00 
+  maxError           = 0.0000000000e+00 
+  maxRelativeError   = 0.0000000000e+00 
+
+ICIMR:
+Test results:
+  RMSE               = 2.3608428159e-22 
+  maxError           = 1.5150499543e-20 
+  maxRelativeError   = 4.0896851968e+10 
+
+ICLDIWP:
+Test results:
+  RMSE               = 7.3947316654e-20 
+  maxError           = 3.6517699667e-18 
+  maxRelativeError   = 8.9087008768e+10 
+
+ICLDTWP:
+Test results:
+  RMSE               = 4.4663994326e-20 
+  maxError           = 2.3009650012e-18 
+  maxRelativeError   = 2.1180272102e+00 
+
+ICWMR:
+Test results:
+  RMSE               = 4.9569787342e-22 
+  maxError           = 1.3552527156e-20 
+  maxRelativeError   = 2.3171623440e+17 
+
+IWC:
+Test results:
+  RMSE               = 8.1301138041e-23 
+  maxError           = 6.7931553493e-21 
+  maxRelativeError   = 2.5766121472e+10 
+
+LCLOUD:
+Test results:
+  RMSE               = 7.9984895958e-19 
+  maxError           = 2.2590320727e-17 
+  maxRelativeError   = 8.6825722047e+15 
+
+ncl_a1:
+Test results:
+  RMSE               = 0.0000000000e+00 
+  maxError           = 0.0000000000e+00 
+  maxRelativeError   = 0.0000000000e+00 
+
+ncl_a2:
+Test results:
+  RMSE               = 0.0000000000e+00 
+  maxError           = 0.0000000000e+00 
+  maxRelativeError   = 0.0000000000e+00 
+
+ncl_a3:
+Test results:
+  RMSE               = 0.0000000000e+00 
+  maxError           = 0.0000000000e+00 
+  maxRelativeError   = 0.0000000000e+00 
+
+num_a1:
+Test results:
+  RMSE               = 0.0000000000e+00 
+  maxError           = 0.0000000000e+00 
+  maxRelativeError   = 0.0000000000e+00 
+
+num_a2:
+Test results:
+  RMSE               = 0.0000000000e+00 
+  maxError           = 0.0000000000e+00 
+  maxRelativeError   = 0.0000000000e+00 
+
+num_a3:
+Test results:
+  RMSE               = 0.0000000000e+00 
+  maxError           = 0.0000000000e+00 
+  maxRelativeError   = 0.0000000000e+00 
+
+NUMICE:
+Test results:
+  RMSE               = 7.1559275674e-13 
+  maxError           = 2.9103830457e-11 
+  maxRelativeError   = 1.8576509476e+01 
+
+NUMLIQ:
+Test results:
+  RMSE               = 6.3058319215e-11 
+  maxError           = 2.3283064365e-09 
+  maxRelativeError   = 1.1692387695e+03 
+
+OMEGA:
+Test results:
+  RMSE               = 0.0000000000e+00 
+  maxError           = 0.0000000000e+00 
+  maxRelativeError   = 0.0000000000e+00 
+
+OMEGAT:
+Test results:
+  RMSE               = 0.0000000000e+00 
+  maxError           = 0.0000000000e+00 
+  maxRelativeError   = 0.0000000000e+00 
+
+pom_a1:
+Test results:
+  RMSE               = 0.0000000000e+00 
+  maxError           = 0.0000000000e+00 
+  maxRelativeError   = 0.0000000000e+00 
+
+QC:
+Test results:
+  RMSE               = 5.7146900895e-25 
+  maxError           = 1.9438744395e-23 
+  maxRelativeError   = 4.1929102736e-04 
+
+Q:
+Test results:
+  RMSE               = 0.0000000000e+00 
+  maxError           = 0.0000000000e+00 
+  maxRelativeError   = 0.0000000000e+00 
+
+QRL:
+Test results:
+  RMSE               = 0.0000000000e+00 
+  maxError           = 0.0000000000e+00 
+  maxRelativeError   = 0.0000000000e+00 
+
+QRS:
+Test results:
+  RMSE               = 0.0000000000e+00 
+  maxError           = 0.0000000000e+00 
+  maxRelativeError   = 0.0000000000e+00 
+
+QT:
+Test results:
+  RMSE               = 0.0000000000e+00 
+  maxError           = 0.0000000000e+00 
+  maxRelativeError   = 0.0000000000e+00 
+
+RELHUM:
+Test results:
+  RMSE               = 0.0000000000e+00 
+  maxError           = 0.0000000000e+00 
+  maxRelativeError   = 0.0000000000e+00 
+
+SL:
+Test results:
+  RMSE               = 0.0000000000e+00 
+  maxError           = 0.0000000000e+00 
+  maxRelativeError   = 0.0000000000e+00 
+
+SLV:
+Test results:
+  RMSE               = 0.0000000000e+00 
+  maxError           = 0.0000000000e+00 
+  maxRelativeError   = 0.0000000000e+00 
+
+SO2:
+Test results:
+  RMSE               = 0.0000000000e+00 
+  maxError           = 0.0000000000e+00 
+  maxRelativeError   = 0.0000000000e+00 
+
+so4_a1:
+Test results:
+  RMSE               = 0.0000000000e+00 
+  maxError           = 0.0000000000e+00 
+  maxRelativeError   = 0.0000000000e+00 
+
+so4_a2:
+Test results:
+  RMSE               = 0.0000000000e+00 
+  maxError           = 0.0000000000e+00 
+  maxRelativeError   = 0.0000000000e+00 
+
+so4_a3:
+Test results:
+  RMSE               = 0.0000000000e+00 
+  maxError           = 0.0000000000e+00 
+  maxRelativeError   = 0.0000000000e+00 
+
+soa_a1:
+Test results:
+  RMSE               = 0.0000000000e+00 
+  maxError           = 0.0000000000e+00 
+  maxRelativeError   = 0.0000000000e+00 
+
+soa_a2:
+Test results:
+  RMSE               = 0.0000000000e+00 
+  maxError           = 0.0000000000e+00 
+  maxRelativeError   = 0.0000000000e+00 
+
+SOAG:
+Test results:
+  RMSE               = 0.0000000000e+00 
+  maxError           = 0.0000000000e+00 
+  maxRelativeError   = 0.0000000000e+00 
+
+TOT_CLD_VISTAU:
+Test results:
+  RMSE               = 3.1240785342e-18 
+  maxError           = 1.3888629830e-16 
+  maxRelativeError   = 2.1774740234e+04 
+
+TOT_ICLD_VISTAU:
+Test results:
+  RMSE               = 1.0834503943e-17 
+  maxError           = 4.4739602648e-16 
+  maxRelativeError   = 2.1586794434e+03 
+
+T:
+Test results:
+  RMSE               = 0.0000000000e+00 
+  maxError           = 0.0000000000e+00 
+  maxRelativeError   = 0.0000000000e+00 
+
+U:
+Test results:
+  RMSE               = 0.0000000000e+00 
+  maxError           = 0.0000000000e+00 
+  maxRelativeError   = 0.0000000000e+00 
+
+UU:
+Test results:
+  RMSE               = 0.0000000000e+00 
+  maxError           = 0.0000000000e+00 
+  maxRelativeError   = 0.0000000000e+00 
+
+VD01:
+Test results:
+  RMSE               = 1.9904613115e-26 
+  maxError           = 6.5269720209e-25 
+  maxRelativeError   = 3.3161079500e-06 
+
+VQ:
+Test results:
+  RMSE               = 0.0000000000e+00 
+  maxError           = 0.0000000000e+00 
+  maxRelativeError   = 0.0000000000e+00 
+
+V:
+Test results:
+  RMSE               = 0.0000000000e+00 
+  maxError           = 0.0000000000e+00 
+  maxRelativeError   = 0.0000000000e+00 
+
+VT:
+Test results:
+  RMSE               = 0.0000000000e+00 
+  maxError           = 0.0000000000e+00 
+  maxRelativeError   = 0.0000000000e+00 
+
+VU:
+Test results:
+  RMSE               = 0.0000000000e+00 
+  maxError           = 0.0000000000e+00 
+  maxRelativeError   = 0.0000000000e+00 
+
+VV:
+Test results:
+  RMSE               = 0.0000000000e+00 
+  maxError           = 0.0000000000e+00 
+  maxRelativeError   = 0.0000000000e+00 
+
+wat_a1:
+Test results:
+  RMSE               = 1.0650487300e-27 
+  maxError           = 3.9278962193e-26 
+  maxRelativeError   = 9.4200075296e-08 
+
+wat_a2:
+Test results:
+  RMSE               = 1.3400401924e-29 
+  maxError           = 5.4904719003e-28 
+  maxRelativeError   = 0.0000000000e+00 
+
+wat_a3:
+Test results:
+  RMSE               = 2.6584313201e-27 
+  maxError           = 1.2553616901e-25 
+  maxRelativeError   = 8.9371046051e-03 
+
+WSUB:
+Test results:
+  RMSE               = 0.0000000000e+00 
+  maxError           = 0.0000000000e+00 
+  maxRelativeError   = 0.0000000000e+00 
+
+WTKE:
+Test results:
+  RMSE               = 0.0000000000e+00 
+  maxError           = 0.0000000000e+00 
+  maxRelativeError   = 0.0000000000e+00 
+
+Z3:
+Test results:
+  RMSE               = 0.0000000000e+00 
+  maxError           = 0.0000000000e+00 
+  maxRelativeError   = 0.0000000000e+00 
+
