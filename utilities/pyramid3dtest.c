@@ -75,7 +75,8 @@ int main( int argc, char* argv[] )
   
   /* prepare wavelets */
   QccWAVWavelet Wavelet;
-  QccString WaveletFilename = QCCWAVWAVELET_DEFAULT_WAVELET;  /* CDF9/7 lifting scheme */
+  // QccString WaveletFilename = QCCWAVWAVELET_DEFAULT_WAVELET;  /* CDF9/7 lifting scheme */
+  QccString WaveletFilename = "CohenDaubechiesFeauveau.9-7.fbk";
   QccString Boundary = "symmetric";
   QccWAVWaveletInitialize(&Wavelet);
   if( QccWAVWaveletCreate(&Wavelet, WaveletFilename, Boundary) != 0 )
