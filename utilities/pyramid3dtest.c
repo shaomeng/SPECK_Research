@@ -78,7 +78,8 @@ int main( int argc, char* argv[] )
   // QccString WaveletFilename = QCCWAVWAVELET_DEFAULT_WAVELET;  /* CDF9/7 lifting scheme */
   QccString WaveletFilename = "CohenDaubechiesFeauveau.9-7.fbk";
   QccString Boundary = "symmetric";
-  QccWAVWaveletInitialize(&Wavelet);
+  if( QccWAVWaveletInitialize(&Wavelet) != 0 )
+    perror("QccWAVWaveletInitialize() failed!\n");
   if( QccWAVWaveletCreate(&Wavelet, WaveletFilename, Boundary) != 0 )
     perror("QccWAVWaveletCreate() failed!\n");
   int TransformType = QCCWAVSUBBANDPYRAMID3D_PACKET;  /* different levels in XY and Z */
