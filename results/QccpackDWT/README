@@ -1,0 +1,7 @@
+These results are from DWT->IDWT transforms using QccPack.
+
+The wavelet kernel choice is always CDF9/7.
+
+The two folders, filter_bank and lifting, represent using filter banks or 
+lifting schemes to perform the wavelet transforms.
+
