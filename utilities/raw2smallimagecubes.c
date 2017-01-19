@@ -4,6 +4,7 @@
  */
 #include "libQccPack.h"
 #include "assert.h"
+#include "string.h"
 
 /* input raw file dimensions */
 #define INNX 1024
@@ -24,6 +25,10 @@ int main( int argc, char* argv[] )
 	}
 
   // verify size
+	char inputName[256];
+	int  inputSuffixLen = 3;
+	strncpy( inputName, argv[1], strlen(argv[1]) - inputSuffixLen );		// discard the suffix
+	inputName[ strlen(argv[1]) - inputSuffixLen ] = '\0';		// Sadly, strncpy doesn't do this automatically.
 	FILE* f = fopen (argv[1],"rb");
 	fseek (f, 0, SEEK_END);
 	long size = ftell(f);
@@ -53,9 +58,9 @@ int main( int argc, char* argv[] )
 
     QccIMGImageCube imagecube;
     QccIMGImageCubeInitialize( &imagecube );
-    QccString filename;
-    QccStringSprintf( filename, "%s.cube%ld", argv[1], cubeIdx );
-    QccStringCopy( imagecube.filename, filename );
+    QccStringSprintf( imagecube.filename, "%sicb.cube%ld", inputName, cubeIdx );
+	  printf("working on: %s\n", imagecube.filename );
+
     imagecube.num_cols = OUTNX;
     imagecube.num_rows = OUTNY;
     imagecube.num_frames = OUTNZ;
