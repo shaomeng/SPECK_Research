@@ -3,9 +3,9 @@
 #include "assert.h"
 #include "libQccPack.h"
 
-#define NX 91
-#define NY 91
-#define NZ 30
+#define NX 1024
+#define NY 1024
+#define NZ 1024
 
 int main( int argc, char* argv[] )
 {
@@ -32,7 +32,6 @@ int main( int argc, char* argv[] )
 	FILE* f = fopen (argv[1], "rb");
 	fseek (f, 0, SEEK_END);
 	long nBytes = ftell(f);
-	assert (nBytes % 6 == 0);
 	assert (nBytes % 4 == 0);
   long nVals = nBytes / 4;
 	assert (nVals == NX * NY * NZ);
