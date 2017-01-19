@@ -1,3 +1,8 @@
+/* 
+ * This program breaks down six faces all together from a CAM model
+ * to six individual files.
+ */
+
 #include <iostream>
 #include <cstdio>
 #include <cassert>
@@ -12,7 +17,7 @@ int main( int argc, char* argv[] )
 {
 	if( argc != 2 )
 	{
-		std::cerr << "Usage: ./raw2faces.cpp input_file" << std::endl;
+		std::cerr << "Usage: ./raw2faces input_file" << std::endl;
 		exit(1);
 	}
 
