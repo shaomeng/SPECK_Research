@@ -24,6 +24,9 @@ endif
 INC_DIR=$(QCC_DIR)/include
 LIB_DIR=$(QCC_DIR)/lib
 
+raw2imagecube: raw2imagecube.c
+	$(CC) -std=c99 -o bin/raw2imagecube -I$(INC_DIR) -L$(LIB_DIR) -lQccPack $(LDFLAGS) raw2imagecube.c
+
 raw2faces: raw2faces.cpp
 	$(CXX) -std=c++11 -o bin/raw2faces raw2faces.cpp
 
