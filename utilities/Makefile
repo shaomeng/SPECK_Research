@@ -30,8 +30,8 @@ raw2faces: raw2faces.cpp
 raw2pyramid3d: raw2pyramid3d.c
 	$(CC) -std=c99 -o bin/raw2pyramid3d -I$(INC_DIR) -L$(LIB_DIR) -lQccPack $(LDFLAGS) raw2pyramid3d.c
 
-pyramid3dtest: pyramid3dtest.c
-	$(CC) -std=c99 -o bin/pyramid3dtest -I$(INC_DIR) -L$(LIB_DIR) -lQccPack $(LDFLAGS) pyramid3dtest.c
+pyramid3dtestdwtidwt: pyramid3dtestDwtIdwt.c
+	$(CC) -std=c99 -o bin/pyramid3dtestDwtIdwt -I$(INC_DIR) -L$(LIB_DIR) -lQccPack $(LDFLAGS) pyramid3dtestDwtIdwt.c
 
 
 
