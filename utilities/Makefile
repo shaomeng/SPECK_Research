@@ -24,11 +24,17 @@ endif
 INC_DIR=$(QCC_DIR)/include
 LIB_DIR=$(QCC_DIR)/lib
 
+smallimagecubes2raw: smallimagecubes2raw.c
+	$(CC) -O3 -std=c99 -o bin/smallimagecubes2raw -I$(INC_DIR) -L$(LIB_DIR) -lQccPack $(LDFLAGS) smallimagecubes2raw.c
+
 raw2smallimagecubes: raw2smallimagecubes.c
 	$(CC) -O3 -std=c99 -o bin/raw2smallimagecubes -I$(INC_DIR) -L$(LIB_DIR) -lQccPack $(LDFLAGS) raw2smallimagecubes.c
 
 raw2imagecube: raw2imagecube.c
 	$(CC) -O3 -std=c99 -o bin/raw2imagecube -I$(INC_DIR) -L$(LIB_DIR) -lQccPack $(LDFLAGS) raw2imagecube.c
+
+compareraw: compareraw.c
+	$(CC) -std=c99 -o bin/compareraw -lm compareraw.c
 
 raw2faces: raw2faces.cpp
 	$(CXX) -std=c++11 -o bin/raw2faces raw2faces.cpp
