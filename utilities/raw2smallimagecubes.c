@@ -20,7 +20,7 @@ int main( int argc, char* argv[] )
 {
 	if( argc != 2 )
 	{
-		printf("%s\n", "Usage: ./raw2cubes input_file.");
+		printf("%s\n", "Usage: ./raw2smallimagecubes input_file.");
 		exit(1);
 	}
 
