@@ -33,6 +33,9 @@ raw2smallimagecubes: raw2smallimagecubes.c
 raw2imagecube: raw2imagecube.c
 	$(CC) -O3 -std=c99 -o bin/raw2imagecube -I$(INC_DIR) -L$(LIB_DIR) -lQccPack $(LDFLAGS) raw2imagecube.c
 
+compareraw: compareraw.c
+	$(CC) -std=c99 -o bin/compareraw -lm compareraw.c
+
 raw2faces: raw2faces.cpp
 	$(CXX) -std=c++11 -o bin/raw2faces raw2faces.cpp
 

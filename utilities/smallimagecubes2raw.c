@@ -18,9 +18,9 @@
 
 int main( int argc, char* argv[] )
 {
-	if( argc != 2 )
+	if( argc != 3 )
 	{
-		printf("%s\n", "Usage: ./smallcubes2raw filename.icb.4to1.cube0 .");
+		printf("%s\n", "Usage: ./smallcubes2raw filename.icb.4to1.cube0 output_file .");
 		printf("%s\n", "       (Only need to pass in the first cube in the sequence.)");
 		exit(1);
 	}
@@ -53,7 +53,7 @@ int main( int argc, char* argv[] )
     QccIMGImageCube imagecube;
     QccIMGImageCubeInitialize( &imagecube );
     QccStringSprintf( imagecube.filename, "%s%ld", inputName, cubeIdx );
-	  printf("working on: %s\n", imagecube.filename );
+	  printf("reading in: %s\n", imagecube.filename );
 		QccIMGImageCubeRead( &imagecube );
 
     for( long frame = 0; frame < imagecube.num_frames; frame++ )
@@ -67,16 +67,9 @@ int main( int argc, char* argv[] )
     QccIMGImageCubeFree(  &imagecube );   
 	}
 
-	char outputName[256];
-	strcpy( outputName, argv[1] ); 
-	char* icbLocation = strstr( outputName, "icb" );
-	strncpy( icbLocation, "raw", 3 );
-	// outputName looks like "filename.raw.4to1.cube0" now.
-	char* cubeLocation = strstr( outputName, ".cube" );
-	// outputName looks like "filename.raw.4to1" now.
-	cubeLocation[0] = '\0';
 
-	FILE* file = fopen( outputName, "wb" );
+	printf("Output file: %s\n", argv[2] );
+	FILE* file = fopen( argv[2], "wb" );
 	fwrite( buf, sizeof(float), nVals, file );
 	fclose( file ); 
 
