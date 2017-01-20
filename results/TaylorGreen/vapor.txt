@@ -1,0 +1,48 @@
+
+VAPOR recovery at 4to1
+	/flash_buffer/Sam/vx.025.raw: min = -2.833806e+00, max = 2.960709e+00
+	/flash_buffer/Sam/vdf/vx.025.raw.4to1: min = -2.833048e+00, max = 2.960709e+00
+	RMS = 1.915411e-03, LMAX = 1.923186e-02
+	NRMS = 3.305559e-04, NLMAX = 3.318976e-03
+	The two files have mean values -3.16975342e-11, 5.55749107e-08.
+	Difference of the two means: -5.56066082e-08.
+
+VAPOR recovery at 8to1:
+	/flash_buffer/Sam/vx.025.raw: min = -2.833806e+00, max = 2.960709e+00
+	/flash_buffer/Sam/vdf/vx.025.raw.8to1: min = -2.832148e+00, max = 2.953982e+00
+	RMS = 4.339057e-03, LMAX = 3.830984e-02
+	NRMS = 7.488214e-04, NLMAX = 6.611397e-03
+	The two files have mean values -3.16975342e-11, 3.11631212e-07.
+	Difference of the two means: -3.11662910e-07.
+
+VAPOR recovery at 16to1:
+	/flash_buffer/Sam/vx.025.raw: min = -2.833806e+00, max = 2.960709e+00
+	/flash_buffer/Sam/vdf/vx.025.raw.16to1: min = -2.833806e+00, max = 2.960709e+00
+	RMS = 7.912963e-03, LMAX = 7.402167e-02
+	NRMS = 1.365595e-03, NLMAX = 1.277444e-02
+	The two files have mean values -3.16975342e-11, -6.19174686e-07.
+	Difference of the two means: 6.19142988e-07.
+
+VAPOR recovery at 32to1:
+	/flash_buffer/Sam/vx.025.raw: min = -2.833806e+00, max = 2.960709e+00
+	/flash_buffer/Sam/vdf/vx.025.raw.32to1: min = -2.832232e+00, max = 2.960709e+00
+	RMS = 1.351660e-02, LMAX = 1.461727e-01
+	NRMS = 2.332654e-03, NLMAX = 2.522605e-02
+	The two files have mean values -3.16975342e-11, -3.41729498e-06.
+	Difference of the two means: 3.41726328e-06.
+
+VAPOR recovery at 64to1:
+	/flash_buffer/Sam/vx.025.raw: min = -2.833806e+00, max = 2.960709e+00
+	/flash_buffer/Sam/vdf/vx.025.raw.64to1: min = -2.833806e+00, max = 2.960709e+00
+	RMS = 2.236516e-02, LMAX = 3.112699e-01
+	NRMS = 3.859713e-03, NLMAX = 5.371802e-02
+	The two files have mean values -3.16975342e-11, -1.01900041e-05.
+	Difference of the two means: 1.01899724e-05.
+
+VAPOR recovery at 128to1:
+	/flash_buffer/Sam/vx.025.raw: min = -2.833806e+00, max = 2.960709e+00
+	/flash_buffer/Sam/vdf/vx.025.raw.128to1: min = -2.833806e+00, max = 2.952278e+00
+	RMS = 3.528979e-02, LMAX = 5.389566e-01
+	NRMS = 6.090205e-03, NLMAX = 9.301152e-02
+	The two files have mean values -3.16975342e-11, -2.62563609e-05.
+	Difference of the two means: 2.62563292e-05.

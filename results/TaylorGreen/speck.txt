@@ -1,12 +1,4 @@
 
-VAPOR recovery at 4to1
-	/flash_buffer/Sam/vx.025.raw: min = -2.833806e+00, max = 2.960709e+00
-	/flash_buffer/Sam/vdf/vx.025.raw.4to1: min = -2.833048e+00, max = 2.960709e+00
-	RMS = 1.915411e-03, LMAX = 1.923186e-02
-	NRMS = 3.305559e-04, NLMAX = 3.318976e-03
-	The two files have mean values -3.16975342e-11, 5.55749107e-08.
-	Difference of the two means: -5.56066082e-08.
-
 SPECK recovery at 4to1
 	/flash_buffer/Sam/vx.025.raw: min = -2.833806e+00, max = 2.960709e+00
 	/flash_buffer/Sam/vx.025.raw.4to1: min = -2.833810e+00, max = 2.960707e+00
