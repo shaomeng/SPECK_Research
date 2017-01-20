@@ -1,0 +1,56 @@
+
+VAPOR recovery at 4to1
+	/flash_buffer/Sam/vx.025.raw: min = -2.833806e+00, max = 2.960709e+00
+	/flash_buffer/Sam/vdf/vx.025.raw.4to1: min = -2.833048e+00, max = 2.960709e+00
+	RMS = 1.915411e-03, LMAX = 1.923186e-02
+	NRMS = 3.305559e-04, NLMAX = 3.318976e-03
+	The two files have mean values -3.16975342e-11, 5.55749107e-08.
+	Difference of the two means: -5.56066082e-08.
+
+SPECK recovery at 4to1
+	/flash_buffer/Sam/vx.025.raw: min = -2.833806e+00, max = 2.960709e+00
+	/flash_buffer/Sam/vx.025.raw.4to1: min = -2.833810e+00, max = 2.960707e+00
+	RMS = 1.448654e-05, LMAX = 9.757280e-05
+	NRMS = 2.500043e-06, NLMAX = 1.683882e-05
+	The two files have mean values -3.16975342e-11, -1.14519221e-10.
+	Difference of the two means: 8.28216871e-11.
+
+SPECK recovery at 8to1
+	/flash_buffer/Sam/vx.025.raw: min = -2.833806e+00, max = 2.960709e+00
+	/flash_buffer/Sam/8to1/vx.025.raw.8to1: min = -2.833570e+00, max = 2.960471e+00
+	RMS = 2.372313e-04, LMAX = 2.119184e-03
+	NRMS = 4.094066e-05, NLMAX = 3.657223e-04
+	The two files have mean values -3.16975342e-11, 5.20019100e-09.
+	Difference of the two means: -5.23188853e-09.
+
+SPECK recovery at 16to1
+	/flash_buffer/Sam/vx.025.raw: min = -2.833806e+00, max = 2.960709e+00
+	/flash_buffer/Sam/16to1/vx.025.raw.16to1: min = -2.834024e+00, max = 2.958946e+00
+	RMS = 1.160744e-03, LMAX = 1.053050e-02
+	NRMS = 2.003178e-04, NLMAX = 1.817322e-03
+	The two files have mean values -3.16975342e-11, -7.71029895e-09.
+	Difference of the two means: 7.67860142e-09.
+
+SPECK recovery at 32to1
+	/flash_buffer/Sam/vx.025.raw: min = -2.833806e+00, max = 2.960709e+00
+	/flash_buffer/Sam/32to1/vx.025.raw.32to1: min = -2.829614e+00, max = 2.960438e+00
+	RMS = 3.171987e-03, LMAX = 3.500752e-02
+	NRMS = 5.474120e-04, NLMAX = 6.041493e-03
+	The two files have mean values -3.16975342e-11, 2.58710654e-07.
+	Difference of the two means: -2.58742351e-07.
+
+SPECK recovery at 64to1
+	/flash_buffer/Sam/vx.025.raw: min = -2.833806e+00, max = 2.960709e+00
+	/flash_buffer/Sam/64to1/vx.025.raw.64to1: min = -2.830057e+00, max = 2.963619e+00
+	RMS = 6.356146e-03, LMAX = 6.447820e-02
+	NRMS = 1.096925e-03, NLMAX = 1.112745e-02
+	The two files have mean values -3.16975342e-11, 5.23516726e-07.
+	Difference of the two means: -5.23548423e-07.
+
+SPECK recovery at 128to1
+	/flash_buffer/Sam/vx.025.raw: min = -2.833806e+00, max = 2.960709e+00
+	/flash_buffer/Sam/128to1/vx.025.raw.128to1: min = -2.841878e+00, max = 2.991032e+00
+	RMS = 1.109156e-02, LMAX = 1.228514e-01
+	NRMS = 1.914148e-03, NLMAX = 2.120132e-02
+	The two files have mean values -3.16975342e-11, -1.68967443e-06.
+	Difference of the two means: 1.68964274e-06.
