@@ -1,0 +1,23 @@
+lifting scheme at 4to1:
+	/flash_buffer/Sam/vx.025.raw: min = -2.833806e+00, max = 2.960709e+00
+	/flash_buffer/Sam/lifting_4to1/vx.025.raw: min = -2.833050e+00, max = 2.960730e+00
+	RMS = 1.915407e-03, LMAX = 1.923278e-02
+	NRMS = 3.305553e-04, NLMAX = 3.319135e-03
+	The two files have mean values -3.16975342e-11, 5.53163788e-08.
+	Difference of the two means: -5.53480763e-08.
+
+lifting scheme at 8to1:
+	/flash_buffer/Sam/vx.025.raw: min = -2.833806e+00, max = 2.960709e+00
+	/flash_buffer/Sam/lifting_8to1/vx.025.raw: min = -2.832147e+00, max = 2.953978e+00
+	RMS = 4.339049e-03, LMAX = 3.830972e-02
+	NRMS = 7.488201e-04, NLMAX = 6.611376e-03
+	The two files have mean values -3.16975342e-11, 3.08664979e-07.
+	Difference of the two means: -3.08696677e-07.
+
+lifting scheme at 16to1:
+	/flash_buffer/Sam/vx.025.raw: min = -2.833806e+00, max = 2.960709e+00
+	/flash_buffer/Sam/lifting_16to1/vx.025.raw: min = -2.836864e+00, max = 2.963539e+00
+	RMS = 7.912947e-03, LMAX = 7.402427e-02
+	NRMS = 1.365593e-03, NLMAX = 1.277489e-02
+	The two files have mean values -3.16975342e-11, -6.24823857e-07.
+	Difference of the two means: 6.24792160e-07.
