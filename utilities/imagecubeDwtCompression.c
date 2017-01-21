@@ -23,7 +23,7 @@ int main( int argc, char* argv[] )
 	if( argc != 4 )
 	{
 		perror("Usage: ./imagecubeDwtCompression input_icb output_icb cratio\n ");
-		exit(0);
+		exit(1);
 	}
 
   int cratio = atoi( argv[3] );
@@ -78,15 +78,15 @@ int main( int argc, char* argv[] )
     float* buf = (float*) malloc( nVals * 4 );
     long counter = 0;
     for( long frame = 0; frame < pyramid.num_frames; frame++ )
-    for( long row   = 0; row   < pyramid.num_rows;   frame++ )
-    for( long col   = 0; col   < pyramid.num_cols;   frame++ )
+    for( long row   = 0; row   < pyramid.num_rows;   row++ )
+    for( long col   = 0; col   < pyramid.num_cols;   col++ )
       buf[ counter++ ] = fabs( pyramid.volume[frame][row][col] );
     qsort( buf, nVals, sizeof(float), compare_float );
     float threshold = buf[ nVals / cratio ];
     free( buf );
     for( long frame = 0; frame < pyramid.num_frames; frame++ )
-    for( long row   = 0; row   < pyramid.num_rows;   frame++ )
-    for( long col   = 0; col   < pyramid.num_cols;   frame++ )
+    for( long row   = 0; row   < pyramid.num_rows;   row++ )
+    for( long col   = 0; col   < pyramid.num_cols;   col++ )
       if( fabs(pyramid.volume[frame][row][col]) < threshold )
         pyramid.volume[frame][row][col] = 0.0;
   }
