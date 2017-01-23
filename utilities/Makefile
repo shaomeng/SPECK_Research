@@ -27,6 +27,9 @@ LIB_DIR=$(QCC_DIR)/lib
 imagecubeDwtCompression: imagecubeDwtCompression.c
 	$(CC) -O3 -std=c99 -o bin/imagecubeDwtCompression -I$(INC_DIR) -L$(LIB_DIR) -lQccPack $(LDFLAGS) imagecubeDwtCompression.c
 
+imagecube2raw: imagecube2raw.c
+	$(CC) -O3 -std=c99 -o bin/imagecube2raw -I$(INC_DIR) -L$(LIB_DIR) -lQccPack $(LDFLAGS) imagecube2raw.c
+
 smallimagecubes2raw: smallimagecubes2raw.c
 	$(CC) -O3 -std=c99 -o bin/smallimagecubes2raw -I$(INC_DIR) -L$(LIB_DIR) -lQccPack $(LDFLAGS) smallimagecubes2raw.c
 
