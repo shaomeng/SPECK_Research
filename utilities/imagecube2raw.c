@@ -7,15 +7,15 @@
 #include "string.h"
 
 /* input icb file dimensions */
-#define NX 256
-#define NY 256
-#define NZ 256
+#define NX 1024
+#define NY 1024
+#define NZ 1024
 
 int main( int argc, char* argv[] )
 {
 	if( argc != 3 )
 	{
-		printf("%s\n", "Usage: ./imagecube2raw filename.icb.4to1.cube0 output_file .");
+		printf("%s\n", "Usage: ./imagecube2raw input_file.icb output_file.raw .");
 		exit(1);
 	}
 
@@ -26,8 +26,9 @@ int main( int argc, char* argv[] )
   QccIMGImageCube imagecube;
   QccIMGImageCubeInitialize( &imagecube );
   QccStringSprintf( imagecube.filename, "%s", argv[1] );
-  printf("reading in: %s\n", imagecube.filename );
+  printf("reading  %s\n", imagecube.filename );
   QccIMGImageCubeRead( &imagecube );
+  printf("finish reading \n" );
 
   for( long frame = 0; frame < imagecube.num_frames; frame++ )
   for( long row   = 0; row   < imagecube.num_rows;   row++ )
