@@ -1,0 +1,31 @@
+Input: /flash_buffer/Sam/wx.025.raw
+Length of input: 1073741824
+Moments of the input (from 1st to 4th):
+  0.0000e+00
+  2.3517e+02
+  -5.7966e+01
+  5.5173e+05
+
+Input: /flash_buffer/Sam/speck_64to1/wx.025.raw.64to1_blocked
+Length of input: 1073741824
+Moments of the input (from 1st to 4th):
+  0.0000e+00
+  2.3372e+02
+  -5.7776e+01
+  5.4943e+05
+
+Input: /flash_buffer/Sam/speck_64to1/wx.025.raw.64to1_no_blocked
+Length of input: 1073741824
+Moments of the input (from 1st to 4th):
+  0.0000e+00
+  2.3380e+02
+  -5.7851e+01
+  5.4967e+05
+
+Input: /flash_buffer/Sam/vdf/wx.025.raw.64to1
+Length of input: 1073741824
+Moments of the input (from 1st to 4th):
+  0.0000e+00
+  2.1487e+02
+  -5.6921e+01
+  4.8428e+05
