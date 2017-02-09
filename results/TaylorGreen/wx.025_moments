@@ -1,31 +1,37 @@
-Input: /flash_buffer/Sam/wx.025.raw
+Input file: /glade/u/home/shaomeng/Data/TG/wx.025.raw
 Length of input: 1073741824
-Moments of the input (from 1st to 4th):
+Moments of the input (from 1st to 8th):
   0.0000e+00
   2.3517e+02
   -5.7966e+01
   5.5173e+05
+  -7.8836e+05
+  5.3004e+09
+  -9.9865e+09
+  1.2913e+14
 
-Input: /flash_buffer/Sam/speck_64to1/wx.025.raw.64to1_blocked
-Length of input: 1073741824
-Moments of the input (from 1st to 4th):
-  0.0000e+00
-  2.3372e+02
-  -5.7776e+01
-  5.4943e+05
 
-Input: /flash_buffer/Sam/speck_64to1/wx.025.raw.64to1_no_blocked
+Input file: /glade/u/home/shaomeng/work/TG/64to1/wx.025.64to1.raw
 Length of input: 1073741824
-Moments of the input (from 1st to 4th):
+Moments of the input (from 1st to 8th):
   0.0000e+00
-  2.3380e+02
-  -5.7851e+01
-  5.4967e+05
+  2.3380e+02		(-0.005859)
+  -5.7851e+01		(0.001983)
+  5.4967e+05		(0.003733)
+  -7.8476e+05		(0.004566)
+  5.2864e+09		(0.002641)
+  -9.6522e+09		(0.03347)
+  1.2873e+14		(0.003097)
 
-Input: /flash_buffer/Sam/vdf/wx.025.raw.64to1
+
+Input file: /glade/u/home/shaomeng/work/TG/128to1/wx.025.128to1.raw
 Length of input: 1073741824
-Moments of the input (from 1st to 4th):
+Moments of the input (from 1st to 8th):
   0.0000e+00
-  2.1487e+02
-  -5.6921e+01
-  4.8428e+05
+  2.3106e+02		(0.01747)
+  -5.7738e+01		(0.003933)
+  5.4196e+05		(0.01770)
+  -7.8346e+05		(0.006215)
+  5.2449e+09		(0.01047)
+  -9.4587e+09		(0.05285)
+  1.2848e+14		(0.005033)
