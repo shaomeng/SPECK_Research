@@ -1,0 +1,22 @@
+#!/bin/bash
+#
+# LSF batch script to run an NCL script
+#
+#BSUB -P SDAS0001						 # project code
+#BSUB -W 2:00                # wall-clock time (hrs:mins)
+#BSUB -n 1                   # number of tasks in job         
+#BSUB -J myjob               # job name
+#BSUB -o log/myjob.%J.out        # output file name in which %J is replaced by the job ID
+#BSUB -e log/myjob.%J.err        # error file name in which %J is replaced by the job ID
+#BSUB -q geyser              # queue
+
+
+module swap intel gnu/5.4.0
+
+/glade/u/home/shaomeng/lib_gnu/QccPack-0.61/bin/speckdecode3d /glade/u/home/shaomeng/work/TG/bitstreams/vx.025.16to1.stream /glade/u/home/shaomeng/work/TG/16to1/vx.025.16to1.icb
+
+/glade/u/home/shaomeng/lib_gnu/QccPack-0.61/bin/speckdecode3d -r 1.0 /glade/u/home/shaomeng/work/TG/bitstreams/vx.025.16to1.stream /glade/u/home/shaomeng/work/TG/32to1/vx.025.32to1.icb
+
+/glade/u/home/shaomeng/lib_gnu/QccPack-0.61/bin/speckdecode3d -r 0.5 /glade/u/home/shaomeng/work/TG/bitstreams/vx.025.16to1.stream /glade/u/home/shaomeng/work/TG/64to1/vx.025.64to1.icb
+
+/glade/u/home/shaomeng/lib_gnu/QccPack-0.61/bin/speckdecode3d -r 0.25 /glade/u/home/shaomeng/work/TG/bitstreams/vx.025.16to1.stream /glade/u/home/shaomeng/work/TG/128to1/vx.025.128to1.icb
