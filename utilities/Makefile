@@ -9,7 +9,7 @@ ifeq ($(ARCH), Darwin)
 	CFLAGS=
   LDFLAGS=
 else
-  ifeq ($(user), shaomeng)
+  ifeq ($(USER), shaomeng)
     CC=gcc
     CXX=g++
     QCC_DIR=/glade/u/home/shaomeng/lib_gnu/QccPack-0.61
@@ -31,7 +31,7 @@ imagecubeDwtCompression: imagecubeDwtCompression.c
 	$(CC) -O3 -std=c99 -o bin/imagecubeDwtCompression -I$(INC_DIR) -L$(LIB_DIR) -lQccPack $(LDFLAGS) imagecubeDwtCompression.c
 
 imagecube2raw: imagecube2raw.c
-	$(CC) -O2 -std=c99 -o bin/imagecube2raw $(CFLAGS) -I$(INC_DIR) -L$(LIB_DIR) -lQccPack $(LDFLAGS) imagecube2raw.c
+	$(CC) -O3 -std=c99 -o bin/imagecube2raw $(CFLAGS) -I$(INC_DIR) -L$(LIB_DIR) -lQccPack $(LDFLAGS) imagecube2raw.c
 
 smallimagecubes2raw: smallimagecubes2raw.c
 	$(CC) -O3 -std=c99 -o bin/smallimagecubes2raw -I$(INC_DIR) -L$(LIB_DIR) -lQccPack $(LDFLAGS) smallimagecubes2raw.c
@@ -40,7 +40,7 @@ raw2smallimagecubes: raw2smallimagecubes.c
 	$(CC) -O3 -std=c99 -o bin/raw2smallimagecubes -I$(INC_DIR) -L$(LIB_DIR) -lQccPack $(LDFLAGS) raw2smallimagecubes.c
 
 raw2imagecube: raw2imagecube.c
-	$(CC) -O2 -std=c99 -o bin/raw2imagecube $(CFLAGS) -I$(INC_DIR) -L$(LIB_DIR) -lQccPack $(LDFLAGS) raw2imagecube.c
+	$(CC) -O3 -std=c99 -o bin/raw2imagecube $(CFLAGS) -I$(INC_DIR) -L$(LIB_DIR) -lQccPack $(LDFLAGS) raw2imagecube.c
 
 compareraw: compareraw.c
 	$(CC) -std=c99 -o bin/compareraw -lm compareraw.c
