@@ -61,7 +61,7 @@ int main( int argc, char* argv[] )
 {
 	if( argc != 2 )
 	{
-		perror("Usage: ./raw2pyramid3d input_pyramid3d_file_(spbt)\n ");
+		perror("Usage: ./pyramid3dtestDwtIdwt input_pyramid3d_file_(spbt)\n ");
 		exit(1);
 	}
 
