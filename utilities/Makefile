@@ -43,10 +43,10 @@ raw2imagecube: raw2imagecube.c
 	$(CC) -O3 -std=c99 -o bin/raw2imagecube $(CFLAGS) -I$(INC_DIR) -L$(LIB_DIR) -lQccPack $(LDFLAGS) raw2imagecube.c
 
 compareraw: compareraw.c
-	$(CC) -std=c99 -o bin/compareraw -lm compareraw.c
+	$(CC) -O3 -std=c99 -o bin/compareraw -lm compareraw.c
 
 compareimagecube: compareimagecube.c
-	$(CC) -std=c99 -o bin/compareimagecube -I$(INC_DIR) -L$(LIB_DIR) -lQccPack $(LDFLAGS) compareimagecube.c
+	$(CC) -O3 -std=c99 -o bin/compareimagecube -I$(INC_DIR) -L$(LIB_DIR) -lQccPack $(LDFLAGS) compareimagecube.c
 
 raw2faces: raw2faces.cpp
 	$(CXX) -std=c++11 -o bin/raw2faces raw2faces.cpp

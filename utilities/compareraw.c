@@ -8,9 +8,9 @@
 #include <assert.h>
 #include <math.h>
 
-#define FLOAT float
+typedef float T;
 
-void Evaluate2Arrays( const FLOAT* A, const FLOAT* B, size_t len, 
+void Evaluate2Arrays( const T* A, const T* B, size_t len, 
                       double* minmaxA, double* minmaxB, 
                       double* rms, double* nrmse, 
                       double* lmax, double* nlmax,
@@ -76,15 +76,15 @@ int main (int argc, char* argv[] )
 		fseek (f2, 0, SEEK_END);
 		long size2 = ftell(f2);
 		assert (size1 == size2);
-		assert (size1 % 4 == 0);
-		long nVals = size1 / 4;
+		assert (size1 % sizeof(T) == 0);
+		long nVals = size1 / sizeof(T);
 
-		fseek( f1, 0, SEEK_SET );
+		fseek( f1, 0, SEEK_SET );	/* equal to rewind(f1) */
 		fseek( f2, 0, SEEK_SET );
-		float* buf1 = (float*) malloc( size1 );
-		float* buf2 = (float*) malloc( size2 );
-		fread( buf1, sizeof(float), nVals, f1 );
-		fread( buf2, sizeof(float), nVals, f2 );
+		T* buf1 = (T*) malloc( size1 );
+		T* buf2 = (T*) malloc( size2 );
+		fread( buf1, sizeof(T), nVals, f1 );
+		fread( buf2, sizeof(T), nVals, f2 );
 		fclose( f1 );
 		fclose( f2 );
 
