@@ -1,0 +1,48 @@
+	/glade/u/home/shaomeng/work/TG/uncompressed/vz.025.raw:
+	  min = -2.714636e+00, max = 2.844316e+00, mean = 1.89345974e-11
+	/glade/u/home/shaomeng/work/TG/16to1/vz.025.16to1.raw:
+	  min = -2.713769e+00, max = 2.844466e+00, mean = -1.12440208e-08
+	RMSE = 1.106300e-03, NRMSE = 1.990124e-04
+	LMAX = 9.530336e-03, NLMAX = 1.714412e-03
+	Difference of the two means: 1.12629554e-08.
+
+	/glade/u/home/shaomeng/scratch/TG_stratified/vz.0027.out:
+	  min = -2.404516e+00, max = 2.228891e+00, mean = 4.66321275e-12
+	/glade/u/home/shaomeng/scratch/TG_stratified/vx.0027.16to1.float:
+	  min = -2.684931e+00, max = 2.854606e+00, mean = 1.29582641e-10
+	RMSE = 7.820991e-01, NRMSE = 1.687956e-01
+	LMAX = 3.813377e+00, NLMAX = 8.230179e-01
+	Difference of the two means: -1.24919429e-10.
+
+	/glade/u/home/shaomeng/work/TG/uncompressed/vz.025.raw:
+	  min = -2.714636e+00, max = 2.844316e+00, mean = 1.89345974e-11
+	/glade/u/home/shaomeng/work/TG/32to1/vz.025.32to1.raw:
+	  min = -2.715392e+00, max = 2.851892e+00, mean = 5.07368237e-08
+	RMSE = 3.031130e-03, NRMSE = 5.452700e-04
+	LMAX = 2.915251e-02, NLMAX = 5.244246e-03
+	Difference of the two means: -5.07178891e-08.
+
+	/glade/u/home/shaomeng/scratch/TG_stratified/vz.0027.out:
+	  min = -2.404516e+00, max = 2.228891e+00, mean = 4.66321275e-12
+	/glade/u/home/shaomeng/scratch/TG_stratified/vx.0027.32to1.float:
+	  min = -2.684873e+00, max = 2.851784e+00, mean = -6.87990403e-08
+	RMSE = 7.820960e-01, NRMSE = 1.687950e-01
+	LMAX = 3.815413e+00, NLMAX = 8.234573e-01
+	Difference of the two means: 6.88037035e-08.
+
+	/glade/u/home/shaomeng/work/TG/uncompressed/vz.025.raw:
+	  min = -2.714636e+00, max = 2.844316e+00, mean = 1.89345974e-11
+	/glade/u/home/shaomeng/work/TG/64to1/vz.025.64to1.raw:
+	  min = -2.708171e+00, max = 2.850254e+00, mean = 3.30025819e-08
+	RMSE = 6.058184e-03, NRMSE = 1.089807e-03
+	LMAX = 6.109399e-02, NLMAX = 1.099020e-02
+	Difference of the two means: -3.29836473e-08.
+
+	/glade/u/home/shaomeng/scratch/TG_stratified/vz.0027.out:
+	  min = -2.404516e+00, max = 2.228891e+00, mean = 4.66321275e-12
+	/glade/u/home/shaomeng/scratch/TG_stratified/vx.0027.64to1.float:
+	  min = -2.685340e+00, max = 2.848052e+00, mean = -3.78760100e-07
+	RMSE = 7.820885e-01, NRMSE = 1.687934e-01
+	LMAX = 3.806298e+00, NLMAX = 8.214899e-01
+	Difference of the two means: 3.78764763e-07.
+
