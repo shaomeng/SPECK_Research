@@ -92,11 +92,10 @@ int main (int argc, char* argv[] )
     double rms, nrms, lmax, nlmax, meanA, meanB;
     Evaluate2Arrays( buf1,buf2, nVals, minmaxA, minmaxB, 
                      &rms, &nrms, &lmax, &nlmax, &meanA, &meanB );
-    printf("\t%s: min = %e, max = %e\n", argv[1], minmaxA[0], minmaxA[1] );
-    printf("\t%s: min = %e, max = %e\n", argv[2], minmaxB[0], minmaxB[1] );
-    printf("\tRMS = %e, LMAX = %e\n", rms, lmax );
-    printf("\tNRMS = %e, NLMAX = %e\n", nrms, nlmax );
-		printf("\tThe two files have mean values %.8e, %.8e.\n", meanA, meanB );
+    printf("\t%s: min = %e, max = %e, mean = %.8e\n", argv[1], minmaxA[0], minmaxA[1], meanA );
+    printf("\t%s: min = %e, max = %e, mean = %.8e\n", argv[2], minmaxB[0], minmaxB[1], meanB);
+    printf("\tRMSE = %e, NRMSE = %e\n", rms, nrms );
+    printf("\tLMAX = %e, NLMAX = %e\n", lmax, nlmax );
 		printf("\tDifference of the two means: %.8e.\n", (meanA - meanB));
 
     free( buf1 );
