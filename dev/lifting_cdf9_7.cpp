@@ -122,14 +122,15 @@ void ForwardTransform2D( Float64* signal, Int64 dim, Int64 nLevel )
     /* transform every row */
     for( Int64 y = 0; y < currentLength; y++ )
     {
-      std::memcpy( buf, signal + y * dim, sizeof(Float64) * currentLength );
+      Float64* startRow = signal + y * dim;
+      std::memcpy( buf, startRow, sizeof(Float64) * currentLength );
 
       QccWAVCDF97AnalysisSymmetricEvenEven( buf, currentLength );
 
       for( Int64 x = 0; x < currentLength; x += 2 )
       {
-        signal[ y * dim + x/2 ]            = buf[x];
-        signal[ y * dim + x/2 + midPoint ] = buf[ x+1 ];
+        *(startRow + x / 2)             = buf[x];
+        *(startRow + x / 2 + midPoint ) = buf[ x+1 ];
       }
     }
 
@@ -183,10 +184,11 @@ void InverseTransform2D( Float64* signal, Int64 dim, Int64 nLevel )
     /* inverse transform every row */
     for( Int64 y = 0; y < currentLength; y++ )
     {
+      Float64* startRow = signal + y * dim;
       for( Int64 x = 0; x < currentLength; x += 2 )
       {
-        buf[x]   = signal[ y * dim + x / 2 ];
-        buf[x+1] = signal[ y * dim + x / 2 + midPoint ];
+        buf[x]   = *( startRow + x / 2 );
+        buf[x+1] = *( startRow + x / 2 + midPoint );
       }
 
       QccWAVCDF97SynthesisSymmetricEvenEven( buf, currentLength );
