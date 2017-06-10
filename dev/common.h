@@ -8,11 +8,11 @@
 #define GAMMA      0.88293362717904
 #define DELTA      0.44350482244527
 #define EPSILON    1.14960430535816
+#define M_SQRT2     1.41421356237309504880168872420969808   /* sqrt(2)        */
 
 #define QCCWAVWAVELET_PHASE_ODD     1
 #define QCCWAVWAVELET_PHASE_EVEN    0
 
-#define M_SQRT2     1.41421356237309504880168872420969808   /* sqrt(2)        */
 
 /*------------------------------------------------------------------------*/
 template< typename T>
@@ -109,7 +109,7 @@ void print_3D_data(T *data_3D, long nFrame, long nRow, long nCol){
     long i, j, k;
     printf("\n\n'");
     for(i=0; i< nFrame; i++){
-        printf("===================================== Frame %d ====================================\n", i);
+        printf("===================================== Frame %ld ====================================\n", i);
         for(j=0; j< nRow; j++){
             for(k=0; k< nCol; k++)
                 printf("%.4f    ", data_3D[i*nRow*nCol + j*nRow + k]);

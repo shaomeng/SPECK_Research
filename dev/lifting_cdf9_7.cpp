@@ -1,10 +1,33 @@
-#include "common.h"
+#include <cstdio>
+#include <cstdlib>
+#include <cstring>
+
+#define ALPHA     -1.58615986717275
+#define BETA      -0.05297864003258
+#define GAMMA      0.88293362717904
+#define DELTA      0.44350482244527
+#define EPSILON    1.14960430535816
 
 /* the following is true on most intel machines */
 using Float64 = double;		
 using Float32 = float;		
-using Int64 = long;
-using Int32 = int;
+using Int64   = long;
+using Int32   = int;
+
+/*------------------------------------------------------------------------*/
+template <typename T>
+void print_3D_data(T *data_3D, long nFrame, long nRow, long nCol){
+    long i, j, k;
+    printf("\n\n'");
+    for(i=0; i< nFrame; i++){
+        printf("========================= Frame %ld ============================\n", i);
+        for(j=0; j< nRow; j++){
+            for(k=0; k< nCol; k++)
+                printf("%.4f    ", data_3D[i*nRow*nCol + j*nRow + k]);
+            printf("\n");
+        }
+    }
+}
 
 /*------------------------------------------------------------------------*/
 void QccWAVCDF97AnalysisSymmetricEvenEven( Float64* signal, Int64 signal_length)
@@ -239,19 +262,64 @@ void ForwardTransform3D( T* signal, Int64 xyDim, Int64 zDim, Int64 xyLevel, Int6
       for( Int64 x = 0; x < xyDim; x++ )
         *(startPos + y * xyDim + x) = static_cast<T>( buf[ idx++ ] );
   }
+
+  delete[] buf;
+}
+
+/*------------------------------------------------------------------------*/
+template< typename T >
+void InverseTransform3D( T* signal, Int64 xyDim, Int64 zDim, Int64 xyLevel, Int64 zLevel )
+{
+  Int64 planeSize = xyDim * xyDim;
+
+  /* inverse transform xyLevel in every XY plane */
+  Float64* buf = new Float64[ planeSize ];
+  for( Int64 z = 0; z < zDim; z++ )
+  {
+    T* startPos = signal + z * planeSize;
+    Int64 idx = 0;
+    for( Int64 y = 0; y < xyDim; y++ )
+      for( Int64 x = 0; x < xyDim; x++ )
+        buf[ idx++ ] = static_cast<Float64>( *(startPos + y * xyDim + x) );
+
+    InverseTransform2D( buf, xyDim, xyLevel );
+
+    idx = 0;
+    for( Int64 y = 0; y < xyDim; y++ )
+      for( Int64 x = 0; x < xyDim; x++ )
+        *(startPos + y * xyDim + x) = static_cast<T>( buf[ idx++ ] );
+  }
+
+  delete[] buf;
+
+  /* transform zLevel in Z direction */
+  buf = new Float64[zDim];
+  for( Int64 y  = 0; y < xyDim; y++ )
+    for( Int64 x = 0; x < xyDim; x++ )
+    {
+      T* startPos = signal + y * xyDim + x;
+      for( Int64 z = 0; z < zDim; z++ )
+        buf[z] = static_cast<Float64>( *(startPos + z * planeSize) );
+
+      InverseTransform1D( buf, zDim, zLevel );
+
+      for( Int64 z = 0; z < zDim; z++ )
+        *(startPos + z * planeSize) = static_cast<T>( buf[z] );
+    }
+
+  delete[] buf; 
 }
 
 int main()
 {
-	Int64 N = 8;
+	Int64 N = 32;
 	Float64* signal = new Float64[ N * N * N ];
 	for( Int64 i = 0; i < N * N * N; i++ )
 		signal[i] = i * 0.1;
 
-	ForwardTransform3D( signal, N, N, 1, 1 );
+	ForwardTransform3D( signal, N, N, 2, 1 );
+	InverseTransform3D( signal, N, N, 2, 1 );
 	print_3D_data( signal, N, N, N );
-//	InverseTransform2D( signal, N, 3 );
-//	print_2D_data( signal, N, N );
 
 	delete[] signal;
 }
