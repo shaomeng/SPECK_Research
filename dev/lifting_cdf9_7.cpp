@@ -60,32 +60,30 @@ void QccWAVCDF97SynthesisSymmetricEvenEven( Float64* signal, Int64 signal_length
 }
 
 /*------------------------------------------------------------------------*/
-template <typename T>
-void ForwardTransform1D( T* signal, Int64 length, Int64 nLevel )
+void ForwardTransform1D( Float64* signal, Int64 length, Int64 nLevel )
 {
 	Int64 currentLength = length;
 	for( Int64 level = 0; level < nLevel; level++ )
 	{
-		Float64 buf[ currentLength ];
-		for( Int64 i = 0; i < currentLength; i++ )
-			buf[i] = static_cast<Float64>( signal[i] );
+		Float64* buf = new Float64[ currentLength ];
+    std::memcpy( buf, signal, sizeof(Float64) * currentLength );
 
 		QccWAVCDF97AnalysisSymmetricEvenEven( buf, currentLength );
 
 		Int64 midPoint = currentLength / 2;
 		for( Int64 i = 0; i < currentLength; i += 2 )
 		{
-			signal[ i/2 ] = static_cast<T>(buf[i]);
-			signal[ i/2 + midPoint ] = static_cast<T>(buf[ i+1 ]);
+			signal[ i/2 ]            = buf[i];
+			signal[ i/2 + midPoint ] = buf[ i+1 ];
 		}
 		
+    delete[] buf;
 		currentLength /= 2;
 	}
 }
 
 /*------------------------------------------------------------------------*/
-template <typename T>
-void InverseTransform1D( T* signal, Int64 length, Int64 nLevel )
+void InverseTransform1D( Float64* signal, Int64 length, Int64 nLevel )
 {
 	Int64 currentLength = length; 
 	for( Int64 i = 1; i < nLevel; i++ )
@@ -94,18 +92,18 @@ void InverseTransform1D( T* signal, Int64 length, Int64 nLevel )
 	for( Int64 level = nLevel; level > 0; level-- )
 	{
 		Int64 midPoint = currentLength / 2;
-		Float64 buf[ currentLength ];
+		Float64* buf   = new Float64[ currentLength ];
 		for( Int64 i = 0; i < currentLength; i += 2 )
 		{
-			buf[i]   = static_cast<Float64>( signal[i/2] );
-			buf[i+1] = static_cast<Float64>( signal[i/2 + midPoint] );
+			buf[i]   = signal[i/2];
+			buf[i+1] = signal[i/2 + midPoint];
 		}
 
 		QccWAVCDF97SynthesisSymmetricEvenEven( buf, currentLength );
 
-		for( Int64 i = 0; i < currentLength; i++ )
-			signal[i] = static_cast<T>( buf[i] );
+    std::memcpy( signal, buf, sizeof(Float64) * currentLength );
 
+    delete[] buf;
 		currentLength *= 2;
 	}
 }
