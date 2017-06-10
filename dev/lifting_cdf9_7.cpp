@@ -108,7 +108,6 @@ void InverseTransform1D( Float64* signal, Int64 length, Int64 nLevel )
 	}
 }
 
-
 /*------------------------------------------------------------------------*/
 void ForwardTransform2D( Float64* signal, Int64 dim, Int64 nLevel )
 {
@@ -201,17 +200,58 @@ void InverseTransform2D( Float64* signal, Int64 dim, Int64 nLevel )
 	}
 }
 
+/*------------------------------------------------------------------------*/
+template< typename T >
+void ForwardTransform3D( T* signal, Int64 xyDim, Int64 zDim, Int64 xyLevel, Int64 zLevel )
+{
+  Int64 planeSize = xyDim * xyDim;
+
+  /* transform zLevel in Z direction */
+  Float64* buf = new Float64[zDim];
+  for( Int64 y  = 0; y < xyDim; y++ )
+    for( Int64 x = 0; x < xyDim; x++ )
+    {
+      T* startPos = signal + y * xyDim + x;
+      for( Int64 z = 0; z < zDim; z++ )
+        buf[z] = static_cast<Float64>( *(startPos + z * planeSize) );
+
+      ForwardTransform1D( buf, zDim, zLevel );
+
+      for( Int64 z = 0; z < zDim; z++ )
+        *(startPos + z * planeSize) = static_cast<T>( buf[z] );
+    }
+  delete[] buf; 
+
+  /* transform xyLevel in every XY plane */
+  buf = new Float64[ planeSize ];
+  for( Int64 z = 0; z < zDim; z++ )
+  {
+    T* startPos = signal + z * planeSize;
+    Int64 idx = 0;
+    for( Int64 y = 0; y < xyDim; y++ )
+      for( Int64 x = 0; x < xyDim; x++ )
+        buf[ idx++ ] = static_cast<Float64>( *(startPos + y * xyDim + x) );
+
+    ForwardTransform2D( buf, xyDim, xyLevel );
+
+    idx = 0;
+    for( Int64 y = 0; y < xyDim; y++ )
+      for( Int64 x = 0; x < xyDim; x++ )
+        *(startPos + y * xyDim + x) = static_cast<T>( buf[ idx++ ] );
+  }
+}
+
 int main()
 {
-	Int64 N = 16;
-	Float64* signal = new Float64[ N * N ];
-	for( Int64 i = 0; i < N * N; i++ )
+	Int64 N = 8;
+	Float64* signal = new Float64[ N * N * N ];
+	for( Int64 i = 0; i < N * N * N; i++ )
 		signal[i] = i * 0.1;
 
-	ForwardTransform2D( signal, N, 3 );
-	print_2D_data( signal, N, N );
-	InverseTransform2D( signal, N, 3 );
-	print_2D_data( signal, N, N );
+	ForwardTransform3D( signal, N, N, 1, 1 );
+	print_3D_data( signal, N, N, N );
+//	InverseTransform2D( signal, N, 3 );
+//	print_2D_data( signal, N, N );
 
 	delete[] signal;
 }
