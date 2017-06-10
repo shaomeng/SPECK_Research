@@ -53,9 +53,10 @@ void transpose_2D(float *src_arr, float *dst_arr, int nRow, int nCol){
         }
 }
 /*------------------------------------------------------------------------*/
-void print_2D_data(float *data_2D, int nX, int nY){
-    for(int i=0; i< nY; i++){
-        for(int j=0; j< nX; j++)
+template< typename T >
+void print_2D_data(T *data_2D, long nX, long nY){
+    for(long i=0; i< nY; i++){
+        for(long j=0; j< nX; j++)
             printf("% 10.4f ", data_2D[i*nX + j]);
         printf("\n");
     }
