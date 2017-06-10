@@ -87,7 +87,10 @@ void ForwardTransform1D( T* signal, Int64 length, Int64 nLevel )
 template <typename T>
 void InverseTransform1D( T* signal, Int64 length, Int64 nLevel )
 {
-	Int64 currentLength = length / nLevel; 
+	Int64 currentLength = length; 
+	for( Int64 i = 1; i < nLevel; i++ )
+		currentLength /= 2;
+
 	for( Int64 level = nLevel; level > 0; level-- )
 	{
 		Int64 midPoint = currentLength / 2;
@@ -110,14 +113,14 @@ void InverseTransform1D( T* signal, Int64 length, Int64 nLevel )
 
 int main()
 {
-	Int64 N = 16;
+	Int64 N = 256;
 	Float64* signal = new Float64[ N ];
 	for( Int64 i = 0; i < N; i++ )
 		signal[i] = i * 0.1;
 
-	ForwardTransform1D( signal, N, 2 );
+	ForwardTransform1D( signal, N, 5 );
 	printSignal( signal, N );
-	InverseTransform1D( signal, N, 2 );
+	InverseTransform1D( signal, N, 5 );
 	printSignal( signal, N );
 
 	delete[] signal;

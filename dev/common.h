@@ -1,5 +1,6 @@
 #include <cstdio>
 #include <cstdlib>
+#include <cstring>
 
 
 #define ALPHA     -1.58615986717275
@@ -61,9 +62,10 @@ void print_2D_data(float *data_2D, int nX, int nY){
     printf("===============================\n");
 }
 /*------------------------------------------------------------------------*/
-void transpose_3D(float *src_arr, float *dst_arr, int size, const int orientation){
-    int i,j,k, src_index=0, dst_index=0;
-    register int stride_x, stride_y, stride_z;
+template< typename T >
+void transpose_3D(T *src_arr, T *dst_arr, long size, const int orientation){
+    long i,j,k, src_index=0, dst_index=0;
+    register long stride_x, stride_y, stride_z;
     switch (orientation){
         case 1:/* XYZ --> XZY */
             stride_x = size;
@@ -101,8 +103,9 @@ void transpose_3D(float *src_arr, float *dst_arr, int size, const int orientatio
 }
 
 /*------------------------------------------------------------------------*/
-void print_3D_data(float *data_3D, int nFrame, int nRow, int nCol){
-    int i, j, k;
+template <typename T>
+void print_3D_data(T *data_3D, long nFrame, long nRow, long nCol){
+    long i, j, k;
     printf("\n\n'");
     for(i=0; i< nFrame; i++){
         printf("===================================== Frame %d ====================================\n", i);
@@ -113,3 +116,46 @@ void print_3D_data(float *data_3D, int nFrame, int nRow, int nCol){
         }
     }
 }
+
+/*------------------------------------------------------------------------*/
+template <typename T>
+void InPlaceTranspose_XYZ_2_ZYX( T* volume, long dim )	// volume has size dim^3
+{
+	long srcX, srcY, srcZ, srcIdx, dstIdx;
+	long planeSize = dim * dim;
+
+	/* 2D transpose on every de facto XZ plane */
+	for( srcZ = 0; srcZ < dim; srcZ++ )
+		// pragma here
+		for( srcY = 0; srcY < dim; srcY++ )
+			for( srcX = srcZ + 1; srcX < dim;  srcX++ )
+			{
+				srcIdx = srcZ * planeSize + srcY * dim + srcX;
+				dstIdx = srcX * planeSize + srcY * dim + srcZ;
+				T tmp  					 = volume[ srcIdx ];
+				volume[ srcIdx ] = volume[ dstIdx ];
+				volume[ dstIdx ] = tmp;
+			}
+}
+
+/*------------------------------------------------------------------------*/
+template <typename T>
+void InPlaceTranspose_ZYX_2_YZX( T* volume, long dim )	// volume has size dim^3
+{
+	long srcX, srcY, srcZ, srcIdx, dstIdx;
+	long planeSize = dim * dim;
+
+	/* 2D transpose on every de facto XY plane */
+	for( srcZ = 0; srcZ < dim; srcZ++ )
+		// pragma here
+		for( srcY = 0; srcY < dim; srcY++ )
+			for( srcX = srcY + 1; srcX < dim;  srcX++ )
+			{
+				srcIdx = srcZ * planeSize + srcY * dim + srcX;
+				dstIdx = srcX * planeSize + srcY * dim + srcZ;
+				T tmp  					 = volume[ srcIdx ];
+				volume[ srcIdx ] = volume[ dstIdx ];
+				volume[ dstIdx ] = tmp;
+			}
+}
+
