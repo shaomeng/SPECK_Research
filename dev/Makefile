@@ -10,6 +10,9 @@ ifeq ($(ARCH), Darwin)
 else
 endif
 
-lifting: lifting_cdf9_7.cpp
-	$(CXX) $(CFLAGS) lifting_cdf9_7.cpp -o bin/lifting 
+speck: wavelet speck.cpp speck.h
+	$(CXX) $(CFLAGS) bin/wavelet.o speck.cpp -o bin/speck
+
+wavelet: wavelet.cpp wavelet.h
+	$(CXX) $(CFLAGS) -c wavelet.cpp -o bin/wavelet.o
 
