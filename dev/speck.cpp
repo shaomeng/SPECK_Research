@@ -16,6 +16,27 @@ void makePositive( T* signal, std::vector<bool> &positiveStateArray, Int64 lengt
 		}
 }
 
+template< typename T >
+Float64 subtractMean( T* signal, Int64 length )
+{
+	Float64 sum = 0.0;
+	Float64 c   = 0.0;
+	Float64 y, t;
+	for( Int64 i = 0; i < length; i++ )
+	{
+		y = signal[i] - c;
+		t = sum + y;
+		c = (t - sum) - y;
+		sum = t;
+	}
+
+	Float64 mean = sum / static_cast<Float64>(length);
+
+	for( Int64 i = 0; i < length; i++ )
+		signal[i] -= mean;
+
+	return mean;
+}
 
 
 int main()
