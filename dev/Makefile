@@ -3,6 +3,7 @@ HOSTNAME=$(shell hostname)
 USER=$(shell whoami)
 
 ifeq ($(ARCH), Darwin)
+  QCC_INSTALL=/Users/shaomeng/Install/QccPack-0.61
   CC=clang
   CXX=clang++
 	CFLAGS=-Wno-c++11-extensions
@@ -10,9 +11,9 @@ ifeq ($(ARCH), Darwin)
 else
 endif
 
-speck: wavelet speck.cpp speck.h
-	$(CXX) $(CFLAGS) bin/wavelet.o speck.cpp -o bin/speck
+speck: wavelet.o speck.cpp speck.h
+	$(CXX) $(CFLAGS) -DHAVE_SPECK -I$(QCC_INSTALL)/include bin/libQccPack.a wavelet.o speck.cpp -o bin/speck
 
-wavelet: wavelet.cpp wavelet.h
-	$(CXX) $(CFLAGS) -c wavelet.cpp -o bin/wavelet.o
+wavelet.o: wavelet.cpp wavelet.h
+	$(CXX) $(CFLAGS) -c wavelet.cpp -o wavelet.o
 

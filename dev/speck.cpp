@@ -2,18 +2,29 @@
 
 using namespace wavelet;
 
+#define QCCSPECK3D_NUM_CONTEXTS 6
+static const int QccSPECK3DNumSymbols[] = { 2, 2, 2, 2, 2, 2 };
+
 template< typename T  >
-void makePositive( T* signal, std::vector<bool> &positiveStateArray, Int64 length )
+Float64 makePositive( T* signal, std::vector<bool> &positiveStateArray, Int64 length )
 {
-	/* assign positiveStateArray to have length "trues" */
+  Float64 maxMagnitude = -MAXFLOAT;   // MAXFLOAT is defined from QccPack
+
+	/* assign positiveStateArray to be all "trues" */
 	positiveStateArray.assign( length, true );
 
 	for( Int64 i = 0; i < length; i++ )
+  {
 		if( signal[i] < 0 )
 		{
 			positiveStateArray[i] = false;
 			signal[i] *= -1.0;
 		}
+    if( signal[i] >  maxMagnitude )
+      maxMagnitude = signal[i];
+  }
+  
+  return maxMagnitude;
 }
 
 template< typename T >
@@ -38,6 +49,66 @@ Float64 subtractMean( T* signal, Int64 length )
 	return mean;
 }
 
+//
+// QccSPECK3DEncode()
+//
+template< typename T >
+Float64 speckEncode3D( T* signal,                   // Input
+                       QccBitBuffer* output_buffer,  // Output
+                       Int64 NX,        
+                       Int64 NY,   
+                       Int64 NZ, 
+                       Int64 xyLevel,  
+                       Int64 zLevel,
+                       Int64 target_bit_cnt )
+{
+  QccENTArithmeticModel *model = NULL;
+  std::vector<bool> state_array;
+  Float64 image_mean  = 0.0;
+  Int64 max_coefficient_bits;
+  Float64 threshold;
+  Int64 frame, row, col;
+  QccList LIS, LSP;
+  QccListInitialize(&LIS);
+  QccListInitialize(&LSP);
+  Int64 bitplane = 0;
+  
+  //
+  // QccSPECK3DEncodeDWT()
+  // subtractMean ->  DWT -> make coeffs positive
+  //
+  image_mean = subtractMean( signal, NX * NY * NZ );
+  ForwardTransform3D( signal, NX, NY, NZ, xyLevel, zLevel );
+  Float64 maxCoeff = makePositive( signal, state_array, NX * NY * NZ ); 
+  max_coefficient_bits = static_cast<Int64>(floor( log2(maxCoeff) ));
+
+  
+  QccSPECK3DEncodeHeader( output_buffer,
+                          QCCWAVSUBBANDPYRAMID3D_PACKET,
+                          zLevel,
+                          xyLevel,
+                          NZ,
+                          NY,
+                          NX,
+                          image_mean,
+                          max_coefficient_bits );
+  
+  model = QccENTArithmeticEncodeStart( QccSPECK3DNumSymbols,
+                                       QCCSPECK3D_NUM_CONTEXTS,
+                                       NULL,
+                                       target_bit_cnt );
+
+  threshold = pow( 2.0, max_coefficient_bits );
+
+  return 0.0;
+}
+
+
+
+
+
+
+
 
 int main()
 {
@@ -49,9 +120,16 @@ int main()
   std::vector<bool> state_array;
 
 	makePositive( signal, state_array, N*N*N );
+  Float64 mean = subtractMean( signal, N*N*N );
 
+  std::cout << "Mean = " << mean << std::endl;
 	for( Int64 i = 0; i < N*N*N; i++ )
 		std::cout << state_array[i] << ", " << signal[i] << std::endl;
 
 	delete[] signal;
+
+
+  QccBitBuffer outputBuffer;
+  outputBuffer.type = QCCBITBUFFER_OUTPUT;
+  QccBitBufferStart(&outputBuffer);
 }
