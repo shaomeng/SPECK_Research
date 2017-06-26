@@ -17,3 +17,6 @@ speck: wavelet.o speck.cpp speck.h
 wavelet.o: wavelet.cpp wavelet.h
 	$(CXX) $(CFLAGS) -c wavelet.cpp -o wavelet.o
 
+bit_buffer.o: bit_buffer.cpp bit_buffer.h
+	$(CXX) $(CFLAGS) -c bit_buffer.cpp -o bit_buffer.o
+
