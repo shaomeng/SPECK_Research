@@ -27,6 +27,9 @@ endif
 INC_DIR=$(QCC_DIR)/include
 LIB_DIR=$(QCC_DIR)/lib
 
+dwt3d: dwt3d.c
+	$(CC) -o bin/dwt3d -I$(INC_DIR) -L$(LIB_DIR) -lQccPack $(LDFLAGS) dwt3d.c
+
 imagecubeDwtCompression: imagecubeDwtCompression.c
 	$(CC) -O3 -std=c99 -o bin/imagecubeDwtCompression -I$(INC_DIR) -L$(LIB_DIR) -lQccPack $(LDFLAGS) imagecubeDwtCompression.c
 
