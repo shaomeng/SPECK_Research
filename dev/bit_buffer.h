@@ -1,6 +1,3 @@
-#include <string>
-#include <cstdio>
-
 #include "wavelet.h"
 using namespace wavelet;
 
@@ -10,7 +7,7 @@ public:
   BitBuffer( std::string name);       // constructor, specify file name
  ~BitBuffer();                        // Destructor
   void SetNumOfFloats( Int64 num );   // This is for the header
-  void Reset();                       //
+  void Reset();
 
   virtual bool Start()    = 0;
   virtual bool End()      = 0;
@@ -19,7 +16,10 @@ protected:
   std::string        fileName;
   Int64              numOfFloats;        // total number of 64-bit floats as header
   Int64              numOfBits;          // total number of bits
+  Int64              currentByteIdx;     // index of the current byte
   unsigned char*     buffer;
+  unsigned char      currentByte;        // stores current char;
+  Int32              bitsToGo;           // how many bits untill finish currentByte
 };
 
 
@@ -32,7 +32,7 @@ public:
   bool Start();
   bool End();
 
-  bool GetBit( Int32 &bitValue );     // zero means 0, non-zero means 1
+  bool GetBit( Int32* bitValue );     // zero means 0, non-zero means 1
   bool GetHeader( Float64* header );  // reads the header: numOfFloats 64-bit floats
 };
 
@@ -47,11 +47,6 @@ public:
   bool End();
   void SetNumberOfBits( Int64 num );
 
-  bool PutBit( Int32 &bitValue );     // zero means 0, non-zero means 1
+  bool PutBit( Int32 bitValue );      // zero means 0, non-zero means 1
   bool PutHeader( Float64* header );  // puts the header: numOfFloats 64-bit floats
-
-private:
-  Int64              byte_cnt;
-  Int64              bit_cnt;
-  Int32              bits_to_go;    // bits left to fill the current byte
 };

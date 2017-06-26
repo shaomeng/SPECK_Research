@@ -2,14 +2,15 @@
 #include <iostream>
 
 
+//
+// BitBuffer
+//
 BitBuffer::BitBuffer( std::string name )
 {
   fileName          = name;
-  numOfFloats       = 0;
-  numOfBits         = 0;
   buffer            = NULL;
+  Reset();
 }
-
 
 BitBuffer::~BitBuffer()
 {
@@ -17,11 +18,13 @@ BitBuffer::~BitBuffer()
   Reset();
 }
 
-
 void BitBuffer::Reset()
 {
   numOfFloats       = 0;
   numOfBits         = 0;
+  currentByteIdx    = 0;
+  currentByte       = 0;
+  bitsToGo          = 0;
   if( buffer )
   {
     delete[] buffer;
@@ -29,13 +32,15 @@ void BitBuffer::Reset()
   }
 }
 
-
 void BitBuffer::SetNumOfFloats( Int64 num )
 {
   numOfFloats = num;
 }
 
 
+//
+// InputBitBuffer
+//
 bool InputBitBuffer::Start()
 {
   FILE* filePtr = fopen( fileName.c_str(), "r" );
@@ -47,6 +52,7 @@ bool InputBitBuffer::Start()
   fseek( filePtr, 0, SEEK_END );
   Int64 size = ftell( filePtr );
   rewind( filePtr );
+
   try
   {
     buffer = new unsigned char[ size ];
@@ -56,12 +62,12 @@ bool InputBitBuffer::Start()
     std::cerr << "bad_alloc caught when reading file: " << ba.what() << std::endl;
     return false;
   }
+
   fread( buffer, sizeof(unsigned char), size, filePtr );
   fclose( filePtr );
   
   return true;
 }
-
 
 bool InputBitBuffer::End()
 {
@@ -69,7 +75,33 @@ bool InputBitBuffer::End()
   return true;
 }
 
+bool InputBitBuffer::GetHeader( Float64* header )
+{
+  memcpy( header, buffer, sizeof(Float64) * numOfFloats );
+  currentByteIdx += sizeof(Float64) * numOfFloats;
 
+  return true;
+}
+
+bool InputBitBuffer::GetBit( Int32* bitValue )
+{
+  if( bitsToGo == 0 )
+  {
+    currentByte = buffer[ currentByteIdx++ ];
+    bitsToGo = 8;
+  }
+
+  *bitValue = currentByte & 0x01;
+  currentByte >>= 1;
+  bitsToGo--;
+
+  return true;
+}
+
+
+//
+// OutputBitBuffer
+//
 bool OutputBitBuffer::Start()
 {
   Int64 totalSize = numOfFloats * 8;
