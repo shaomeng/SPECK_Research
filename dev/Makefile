@@ -6,7 +6,7 @@ ifeq ($(ARCH), Darwin)
   QCC_INSTALL=/Users/shaomeng/Install/QccPack-0.61
   CC=clang
   CXX=clang++
-	CFLAGS=-Wno-c++11-extensions
+  CFLAGS=-Wno-c++11-extensions
   LDFLAGS=
 else
 endif

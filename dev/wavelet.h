@@ -16,10 +16,16 @@ using Float32 = float;
 using Int64   = long;
 using Int32   = int;
 
-template< typename T >
-void ForwardTransform3D( T* signal, Int64 xyDim, Int64 zDim, Int64 xyLevel, Int64 zLevel );
+void ForwardTransform3D( Float64*     signal, 
+                         Int64        xyDim, 
+                         Int64        zDim, 
+                         Int64        xyLevel, 
+                         Int64        zLevel );
 
-template< typename T >
-void InverseTransform3D( T* signal, Int64 xyDim, Int64 zDim, Int64 xyLevel, Int64 zLevel );
+void InverseTransform3D( Float64*     signal, 
+                         Int64        xyDim, 
+                         Int64        zDim, 
+                         Int64        xyLevel, 
+                         Int64        zLevel );
 
 };

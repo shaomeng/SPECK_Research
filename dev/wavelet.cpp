@@ -212,8 +212,11 @@ void InverseTransform2D( Float64* signal, Int64 dim, Int64 nLevel )
 }
 
 /*------------------------------------------------------------------------*/
-template< typename T >
-void ForwardTransform3D( T* signal, Int64 xyDim, Int64 zDim, Int64 xyLevel, Int64 zLevel )
+void ForwardTransform3D( Float64* signal, 
+                         Int64    xyDim, 
+                         Int64    zDim, 
+                         Int64    xyLevel, 
+                         Int64    zLevel )
 {
   Int64 planeSize = xyDim * xyDim;
 
@@ -222,14 +225,14 @@ void ForwardTransform3D( T* signal, Int64 xyDim, Int64 zDim, Int64 xyLevel, Int6
   for( Int64 y  = 0; y < xyDim; y++ )
     for( Int64 x = 0; x < xyDim; x++ )
     {
-      T* startPos = signal + y * xyDim + x;
+      Float64* startPos = signal + y * xyDim + x;
       for( Int64 z = 0; z < zDim; z++ )
         buf[z] = static_cast<Float64>( *(startPos + z * planeSize) );
 
       ForwardTransform1D( buf, zDim, zLevel );
 
       for( Int64 z = 0; z < zDim; z++ )
-        *(startPos + z * planeSize) = static_cast<T>( buf[z] );
+        *(startPos + z * planeSize) = buf[z];
     }
   delete[] buf; 
 
@@ -237,26 +240,29 @@ void ForwardTransform3D( T* signal, Int64 xyDim, Int64 zDim, Int64 xyLevel, Int6
   buf = new Float64[ planeSize ];
   for( Int64 z = 0; z < zDim; z++ )
   {
-    T* startPos = signal + z * planeSize;
+    Float64* startPos = signal + z * planeSize;
     Int64 idx = 0;
     for( Int64 y = 0; y < xyDim; y++ )
       for( Int64 x = 0; x < xyDim; x++ )
-        buf[ idx++ ] = static_cast<Float64>( *(startPos + y * xyDim + x) );
+        buf[ idx++ ] = *(startPos + y * xyDim + x);
 
     ForwardTransform2D( buf, xyDim, xyLevel );
 
     idx = 0;
     for( Int64 y = 0; y < xyDim; y++ )
       for( Int64 x = 0; x < xyDim; x++ )
-        *(startPos + y * xyDim + x) = static_cast<T>( buf[ idx++ ] );
+        *(startPos + y * xyDim + x) = buf[ idx++ ];
   }
 
   delete[] buf;
 }
 
 /*------------------------------------------------------------------------*/
-template< typename T >
-void InverseTransform3D( T* signal, Int64 xyDim, Int64 zDim, Int64 xyLevel, Int64 zLevel )
+void InverseTransform3D( Float64* signal, 
+                         Int64    xyDim, 
+                         Int64    zDim,  
+                         Int64    xyLevel,   
+                         Int64    zLevel )
 {
   Int64 planeSize = xyDim * xyDim;
 
@@ -264,18 +270,18 @@ void InverseTransform3D( T* signal, Int64 xyDim, Int64 zDim, Int64 xyLevel, Int6
   Float64* buf = new Float64[ planeSize ];
   for( Int64 z = 0; z < zDim; z++ )
   {
-    T* startPos = signal + z * planeSize;
+    Float64* startPos = signal + z * planeSize;
     Int64 idx = 0;
     for( Int64 y = 0; y < xyDim; y++ )
       for( Int64 x = 0; x < xyDim; x++ )
-        buf[ idx++ ] = static_cast<Float64>( *(startPos + y * xyDim + x) );
+        buf[ idx++ ] = *(startPos + y * xyDim + x);
 
     InverseTransform2D( buf, xyDim, xyLevel );
 
     idx = 0;
     for( Int64 y = 0; y < xyDim; y++ )
       for( Int64 x = 0; x < xyDim; x++ )
-        *(startPos + y * xyDim + x) = static_cast<T>( buf[ idx++ ] );
+        *(startPos + y * xyDim + x) = buf[ idx++ ];
   }
 
   delete[] buf;
@@ -285,14 +291,14 @@ void InverseTransform3D( T* signal, Int64 xyDim, Int64 zDim, Int64 xyLevel, Int6
   for( Int64 y  = 0; y < xyDim; y++ )
     for( Int64 x = 0; x < xyDim; x++ )
     {
-      T* startPos = signal + y * xyDim + x;
+      Float64* startPos = signal + y * xyDim + x;
       for( Int64 z = 0; z < zDim; z++ )
-        buf[z] = static_cast<Float64>( *(startPos + z * planeSize) );
+        buf[z] = *(startPos + z * planeSize);
 
       InverseTransform1D( buf, zDim, zLevel );
 
       for( Int64 z = 0; z < zDim; z++ )
-        *(startPos + z * planeSize) = static_cast<T>( buf[z] );
+        *(startPos + z * planeSize) = buf[z];
     }
 
   delete[] buf; 
