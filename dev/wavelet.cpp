@@ -288,7 +288,7 @@ void InverseTransform3D( Float64* signal,
     for( Int64 y = 0; y < xyDim; y++ )
       for( Int64 x = 0; x < xyDim; x++ )
         *(startPos + y * xyDim + x) = buf[ idx++ ];*/
-    std::memcpy( startPox, sizeof(Float64) * planeSize );
+    std::memcpy( startPos, buf, sizeof(Float64) * planeSize );
   }
 
   delete[] buf;

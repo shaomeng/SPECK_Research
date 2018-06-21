@@ -28,4 +28,6 @@ void InverseTransform3D( Float64*     signal,
                          Int64        xyLevel, 
                          Int64        zLevel );
 
+// auto-vectorization tutorials:
+// https://software.intel.com/sites/default/files/8c/a9/CompilerAutovectorizationGuide.pdf
 };
