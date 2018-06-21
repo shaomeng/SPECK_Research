@@ -11,8 +11,8 @@ namespace wavelet{
 #define EPSILON    1.14960430535816
 
 /* the following is true on most intel machines */
-using Float64 = double;		
-using Float32 = float;		
+using Float64 = double;     
+using Float32 = float;      
 using Int64   = long;
 using Int32   = int;
 
