@@ -35,8 +35,8 @@ void BitBuffer::Reset()
 void BitBuffer::PrintSelf() const
 {
     unsigned char   printByte;
-    Int32           printByteIdx  = headerSize;
-    Int32           printBitsToGo = 0;;
+    unsigned char   printByteIdx  = headerSize;
+    Int16           printBitsToGo = 0;;
 
     for( Int64 i = 0; i < numOfBits; i++ )
     {
@@ -47,7 +47,7 @@ void BitBuffer::PrintSelf() const
             std::cout << std::endl;
         }
 
-        Int32 printVal = printByte & 0x01;
+        unsigned char printVal = printByte & 0x01;
         printByte >>= 1;
         printBitsToGo--;
         std::cout << printVal << ", ";
@@ -98,7 +98,7 @@ bool InputBitBuffer::End()
 }
 
 
-bool InputBitBuffer::GetBit( Int32* bitValue )
+bool InputBitBuffer::GetBit( unsigned char* bitValue )
 {
     if( bitsToGo == 0 )
     {
@@ -122,6 +122,7 @@ OutputBitBuffer::OutputBitBuffer( const std::string& name ) : BitBuffer( name )
 
 void OutputBitBuffer::SetNumberOfBits( Int64 num )
 {
+    assert( num > 0 );
     numOfBits = num;
 }
 
@@ -169,7 +170,7 @@ bool OutputBitBuffer::End()
     return true;
 }
 
-bool OutputBitBuffer::PutBit( Int32 bitValue )
+bool OutputBitBuffer::PutBit( unsigned char bitValue )
 {
     currentByte >>= 1;
     if (bitValue)
@@ -190,15 +191,17 @@ bool OutputBitBuffer::PutBit( Int32 bitValue )
 int main()
 {
     std::string filename = "test_buffer.bitstream";
-    Int64       numbits  = 17;
+    Int32       numbits  = 9;
 
     OutputBitBuffer  outbuf( filename );
     outbuf.SetNumberOfBits( numbits );
     outbuf.Start();
-    Int32 a;
+    unsigned char a;
     for( Int32 i = 0; i < numbits; i++ )
     {
         std::cin >> a;
+        if( a == '0' )
+            a = '\0';
         outbuf.PutBit( a );
     }
     outbuf.End();
@@ -209,6 +212,10 @@ int main()
     for( Int32 i = 0; i < numbits; i++ )
     {
         inbuf.GetBit( &a );
+        if( a == '\0' )
+            a = '0';
+        else 
+            a = '1';
         std::cout << a << ", " << std::endl;
     }
     inbuf.End();

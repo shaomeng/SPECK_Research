@@ -21,7 +21,7 @@ protected:
     Int64              currentByteIdx;     // index of the current byte
     unsigned char*     buffer;
     unsigned char      currentByte;        // stores current byte;
-    Int32              bitsToGo;           // how many bits untill finish currentByte
+    Int16              bitsToGo;           // how many bits untill finish currentByte
 };
 
 
@@ -34,7 +34,7 @@ public:
     InputBitBuffer( const std::string& name );
     bool Start();
     bool End();
-    bool GetBit( Int32* bitValue );     // zero means 0, non-zero means 1
+    bool GetBit( unsigned char* bitValue );     // zero means 0, non-zero means 1
 };
 
 
@@ -48,5 +48,5 @@ public:
     bool Start();
     bool End();
     void SetNumberOfBits( Int64 num );
-    bool PutBit( Int32 bitValue );      // zero means 0, non-zero means 1
+    bool PutBit( unsigned char bitValue );      // zero means 0, non-zero means 1
 };

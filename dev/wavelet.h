@@ -15,6 +15,7 @@ using Float64 = double;
 using Float32 = float;      
 using Int64   = long;
 using Int32   = int;
+using Int16   = short;
 
 void ForwardTransform3D( Float64*     signal, 
                          Int64        xyDim, 
