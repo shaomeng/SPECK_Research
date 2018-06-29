@@ -3,9 +3,9 @@
 
 
 //
-// BitBuffer
+// Constructor: BitBuffer
 //
-BitBuffer::BitBuffer( std::string name )
+BitBuffer::BitBuffer( const std::string& name )
 {
     fileName          = name;
     buffer            = NULL;
@@ -22,14 +22,37 @@ void BitBuffer::Reset()
 {
     headerSize        = 0;  // Once header is specified, this is header's size.
     numOfBits         = 0;
-    currentByteIdx    = 0;
     currentByte       = 0;
     bitsToGo          = 0;
+    currentByteIdx    = headerSize;
     if( buffer )
     {
-      delete[] buffer;
-      buffer  = NULL;
+        delete[] buffer;
+        buffer  = NULL;
     }
+}
+
+void BitBuffer::PrintSelf() const
+{
+    unsigned char   printByte;
+    Int32           printByteIdx  = headerSize;
+    Int32           printBitsToGo = 0;;
+
+    for( Int64 i = 0; i < numOfBits; i++ )
+    {
+        if( bitsToGo == 0 )
+        {
+            printByte = buffer[ printByteIdx++ ];
+            printBitsToGo = 8;
+            std::cout << std::endl;
+        }
+
+        Int32 printVal = printByte & 0x01;
+        printByte >>= 1;
+        printBitsToGo--;
+        std::cout << printVal << ", ";
+    }
+    std::cout << std::endl;
 }
 
 
@@ -91,6 +114,9 @@ bool InputBitBuffer::GetBit( Int32* bitValue )
 //
 // OutputBitBuffer
 //
+OutputBitBuffer::OutputBitBuffer( const std::string& name ) : BitBuffer( name )
+{ }
+
 void OutputBitBuffer::SetNumberOfBits( Int64 num )
 {
     numOfBits = num;
@@ -98,42 +124,84 @@ void OutputBitBuffer::SetNumberOfBits( Int64 num )
 
 bool OutputBitBuffer::Start()
 {
-  Int64 totalSize = headerSize + numOfBits / 8;
-  if( numOfBits % 8 > 0 )
-      totalSize++;
-  try
-  {
-      buffer = new unsigned char[ totalSize ];
-  }
-  catch (std::bad_alloc& ba)
-  {
-      std::cerr << "bad_alloc caught when allocating output buffer: " << ba.what() << std::endl;
-      return false;
-  }
+    Int64 totalSize = headerSize + numOfBits / 8;
+    if( numOfBits % 8 > 0 )
+        totalSize++;
+    try
+    {
+        buffer = new unsigned char[ totalSize ];
+    }
+    catch (std::bad_alloc& ba)
+    {
+        std::cerr << "bad_alloc caught when allocating output buffer: " << ba.what() << std::endl;
+        return false;
+    }
 
-  return true;
+    return true;
 }
 
 
 bool OutputBitBuffer::End()
 {
-  Int64 totalSize = headerSize + numOfBits / 8;
-  if( numOfBits % 8 > 0 )
-  {
-      totalSize++;
-      // do something to pad the last few bits
-  }
+    buffer[ currentByteIdx ] = currentByte;
 
-  FILE* f = std::fopen( fileName.c_str(), "w" );
-  if( f == NULL )
-  {
-      std::cerr << "Failed to open file: " << fileName << std::endl;
-      return false;
-  }
-  std::fwrite( buffer, sizeof(unsigned char), totalSize, f );
-  std::fclose( f ); 
+    Int64 totalSize = headerSize + numOfBits / 8;
+    if( numOfBits % 8 > 0 )
+    {
+        totalSize++;
+    }
 
-  Reset();
+    FILE* f = std::fopen( fileName.c_str(), "w" );
+    if( f == NULL )
+    {
+        std::cerr << "Failed to open file: " << fileName << std::endl;
+        return false;
+    }
+    std::fwrite( buffer, sizeof(unsigned char), totalSize, f );
+    std::fclose( f ); 
 
-  return true;
+    Reset();
+
+    return true;
+}
+
+bool OutputBitBuffer::PutBit( Int32 bitValue )
+{
+    currentByte >>= 1;
+    if (bitValue)
+        currentByte |= 0x80;
+    bitsToGo--;
+
+    if( bitsToGo == 0 )
+    {
+        if( currentByteIdx - headerSize > numOfBits / 8 )
+        {
+            std::cerr << "Putting too many bits!" << std::endl;
+            return false;
+        }
+        buffer[ currentByteIdx++ ] = currentByte;
+        currentByte                = 0;
+        bitsToGo = 8;
+    }
+
+    return true;
+}
+
+
+int main()
+{
+    std::string filename = "test_buffer.bitstream";
+    Int64       numbits  = 16;
+
+    OutputBitBuffer  outbuf( filename );
+    outbuf.SetNumberOfBits( numbits );
+    outbuf.Start();
+    Int32 a;
+    for( Int32 i = 0; i < numbits; i++ )
+    {
+        std::cin >> a;
+        outbuf.PutBit( a );
+    }
+    outbuf.PrintSelf();
+    outbuf.End();
 }

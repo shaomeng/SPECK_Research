@@ -4,9 +4,10 @@ using namespace wavelet;
 class BitBuffer
 {
 public:
-    BitBuffer( std::string name);       // constructor, specify file name
-   ~BitBuffer();                        // Destructor
+    BitBuffer( const std::string& name );       // Constructor, specify file name
+   ~BitBuffer();                                // Destructor
     void Reset();
+    void PrintSelf() const;
 
     // Each Start() call needs to be followed by an End(),
     //   before the next Start() call.
@@ -27,12 +28,12 @@ protected:
 //
 // Reads a bitstream from disk
 //
-class InputBitBuffer : BitBuffer
+class InputBitBuffer : public BitBuffer
 {
 public:
+    //InputBitBuffer( const std::string& name );
     bool Start();
     bool End();
-
     bool GetBit( Int32* bitValue );     // zero means 0, non-zero means 1
 };
 
@@ -40,12 +41,12 @@ public:
 //
 // Outputs a bitstream to disk
 //
-class OutputBitBuffer : BitBuffer
+class OutputBitBuffer : public BitBuffer
 {
 public:
+    OutputBitBuffer( const std::string& name );
     bool Start();
     bool End();
     void SetNumberOfBits( Int64 num );
-
     bool PutBit( Int32 bitValue );      // zero means 0, non-zero means 1
 };

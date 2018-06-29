@@ -20,3 +20,6 @@ wavelet.o: wavelet.cpp wavelet.h
 bit_buffer.o: bit_buffer.cpp bit_buffer.h
 	$(CXX) $(CFLAGS) -c bit_buffer.cpp -o bit_buffer.o
 
+bit_buffer: bit_buffer.cpp bit_buffer.h
+	$(CXX) $(CFLAGS) bit_buffer.cpp -o bit_buffer
+
