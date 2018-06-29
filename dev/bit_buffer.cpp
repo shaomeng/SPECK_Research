@@ -40,7 +40,7 @@ void BitBuffer::PrintSelf() const
 
     for( Int64 i = 0; i < numOfBits; i++ )
     {
-        if( bitsToGo == 0 )
+        if( printBitsToGo == 0 )
         {
             printByte = buffer[ printByteIdx++ ];
             printBitsToGo = 8;
@@ -59,6 +59,9 @@ void BitBuffer::PrintSelf() const
 //
 // InputBitBuffer
 //
+InputBitBuffer::InputBitBuffer( const std::string& name ) : BitBuffer( name )
+{ }
+
 bool InputBitBuffer::Start()
 {
     FILE* filePtr = std::fopen( fileName.c_str(), "r" );
@@ -124,6 +127,8 @@ void OutputBitBuffer::SetNumberOfBits( Int64 num )
 
 bool OutputBitBuffer::Start()
 {
+    bitsToGo    = 8;
+
     Int64 totalSize = headerSize + numOfBits / 8;
     if( numOfBits % 8 > 0 )
         totalSize++;
@@ -143,13 +148,12 @@ bool OutputBitBuffer::Start()
 
 bool OutputBitBuffer::End()
 {
-    buffer[ currentByteIdx ] = currentByte;
+    while( bitsToGo != 8 )  // didn't finish the last byte
+        PutBit( 0 );
 
     Int64 totalSize = headerSize + numOfBits / 8;
     if( numOfBits % 8 > 0 )
-    {
         totalSize++;
-    }
 
     FILE* f = std::fopen( fileName.c_str(), "w" );
     if( f == NULL )
@@ -174,11 +178,6 @@ bool OutputBitBuffer::PutBit( Int32 bitValue )
 
     if( bitsToGo == 0 )
     {
-        if( currentByteIdx - headerSize > numOfBits / 8 )
-        {
-            std::cerr << "Putting too many bits!" << std::endl;
-            return false;
-        }
         buffer[ currentByteIdx++ ] = currentByte;
         currentByte                = 0;
         bitsToGo = 8;
@@ -191,7 +190,7 @@ bool OutputBitBuffer::PutBit( Int32 bitValue )
 int main()
 {
     std::string filename = "test_buffer.bitstream";
-    Int64       numbits  = 16;
+    Int64       numbits  = 17;
 
     OutputBitBuffer  outbuf( filename );
     outbuf.SetNumberOfBits( numbits );
@@ -202,6 +201,15 @@ int main()
         std::cin >> a;
         outbuf.PutBit( a );
     }
-    outbuf.PrintSelf();
     outbuf.End();
+
+    InputBitBuffer inbuf( filename );
+    inbuf.Start();
+    std::cout << "test input buffer: " << std::endl;
+    for( Int32 i = 0; i < numbits; i++ )
+    {
+        inbuf.GetBit( &a );
+        std::cout << a << ", " << std::endl;
+    }
+    inbuf.End();
 }

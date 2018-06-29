@@ -7,7 +7,7 @@ public:
     BitBuffer( const std::string& name );       // Constructor, specify file name
    ~BitBuffer();                                // Destructor
     void Reset();
-    void PrintSelf() const;
+    void PrintSelf() const;                     // Caution: the last byte might not be correct.
 
     // Each Start() call needs to be followed by an End(),
     //   before the next Start() call.
@@ -31,7 +31,7 @@ protected:
 class InputBitBuffer : public BitBuffer
 {
 public:
-    //InputBitBuffer( const std::string& name );
+    InputBitBuffer( const std::string& name );
     bool Start();
     bool End();
     bool GetBit( Int32* bitValue );     // zero means 0, non-zero means 1
