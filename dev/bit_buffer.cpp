@@ -1,6 +1,6 @@
 #include "bit_buffer.h"
 #include <iostream>
-
+#include <cassert>
 
 //
 // Constructor: BitBuffer

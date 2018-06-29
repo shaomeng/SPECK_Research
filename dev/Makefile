@@ -9,6 +9,11 @@ ifeq ($(ARCH), Darwin)
   CFLAGS=-g -Wall -Wno-c++11-extensions
   LDFLAGS=
 else
+  QCC_INSTALL=/Users/shaomeng/Install/QccPack-0.61
+  CC=gcc
+  CXX=g++
+  CFLAGS=-g -Wall 
+  LDFLAGS=
 endif
 
 speck: wavelet.o speck.cpp speck.h
