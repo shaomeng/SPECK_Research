@@ -1,4 +1,4 @@
-#include "bit_buffer.h"
+#include "BitBuffer.h"
 #include <iostream>
 #include <cassert>
 

@@ -22,9 +22,9 @@ speck: wavelet.o speck.cpp speck.h
 wavelet.o: wavelet.cpp wavelet.h
 	$(CXX) $(CFLAGS) -c wavelet.cpp -o wavelet.o
 
-bit_buffer.o: bit_buffer.cpp bit_buffer.h
-	$(CXX) $(CFLAGS) -c bit_buffer.cpp -o bit_buffer.o
+bitbuffer.o: BitBuffer.cpp BitBuffer.h
+	$(CXX) $(CFLAGS) -c BitBuffer.cpp -o BitBuffer.o
 
-bit_buffer: bit_buffer.cpp bit_buffer.h
-	$(CXX) $(CFLAGS) bit_buffer.cpp -o bit_buffer
+bitbuffer: BitBuffer.cpp BitBuffer.h
+	$(CXX) $(CFLAGS) BitBuffer.cpp -o BitBuffer
 
