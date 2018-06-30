@@ -19,8 +19,11 @@ endif
 speck: wavelet.o speck.cpp speck.h
 	$(CXX) $(CFLAGS) -DHAVE_SPECK -I$(QCC_INSTALL)/include bin/libQccPack.a wavelet.o speck.cpp -o bin/speck
 
-wavelet.o: wavelet.cpp wavelet.h
-	$(CXX) $(CFLAGS) -c wavelet.cpp -o wavelet.o
+wavelets.o: Wavelets.cpp Wavelets.h
+	$(CXX) $(CFLAGS) -c Wavelets.cpp -o Wavelets.o
+
+wavelets: Wavelets.cpp Wavelets.h
+	$(CXX) $(CFLAGS) Wavelets.cpp -o Wavelets
 
 bitbuffer.o: BitBuffer.cpp BitBuffer.h
 	$(CXX) $(CFLAGS) -c BitBuffer.cpp -o bitbuffer.o

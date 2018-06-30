@@ -191,7 +191,7 @@ bool OutputBitBuffer::PutBit( unsigned char bitValue )
 int main()
 {
     std::string filename = "test_buffer.bitstream";
-    Int32       numbits  = 9;
+    Int32       numbits  = 17;
 
     OutputBitBuffer  outbuf( filename );
     outbuf.SetNumberOfBits( numbits );
