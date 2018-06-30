@@ -9,8 +9,10 @@ public:
     void Reset();
     void PrintSelf() const;                     // Caution: the last byte might not be correct.
 
+    //
     // Each Start() call needs to be followed by an End(),
-    //   before the next Start() call.
+    // before the next Start() call.
+    //
     virtual bool Start()    = 0;
     virtual bool End()      = 0;
 
@@ -34,6 +36,11 @@ public:
     InputBitBuffer( const std::string& name );
     bool Start();
     bool End();
+    //
+    // GetBit() should be called in between Start() and End().
+    // It is the responsibility of the programmer to not get more bits 
+    // than what this buffer has.
+    //
     bool GetBit( unsigned char* bitValue );     // zero means 0, non-zero means 1
 };
 
@@ -48,5 +55,10 @@ public:
     bool Start();
     bool End();
     void SetNumberOfBits( Int64 num );
+    //
+    // PutBit() should be called in between Start() and End().
+    // It is the responsibility of the programmer to not put more bits 
+    // than what this buffer is instructed to hold by SetNumberOfBits().
+    //
     bool PutBit( unsigned char bitValue );      // zero means 0, non-zero means 1
 };
