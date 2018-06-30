@@ -1,6 +1,6 @@
-#include "wavelet.h"
+#include "Wavelets.h"
 
-using namespace wavelet;
+using namespace SPECK;
 
 /*------------------------------------------------------------------------*/
 template <typename T>
@@ -246,18 +246,10 @@ void ForwardTransform3D( Float64* signal,
   for( Int64 z = 0; z < zDim; z++ )
   {
       Float64* startPos = signal + z * planeSize;
-      /*Int64 idx = 0;
-      for( Int64 y = 0; y < xyDim; y++ )
-        for( Int64 x = 0; x < xyDim; x++ )
-          buf[ idx++ ] = *(startPos + y * xyDim + x);*/
       std::memcpy( buf, startPos, sizeof(Float64) * planeSize );
 
       ForwardTransform2D( buf, xyDim, xyLevel );
 
-      /*idx = 0;
-      for( Int64 y = 0; y < xyDim; y++ )
-        for( Int64 x = 0; x < xyDim; x++ )
-          *(startPos + y * xyDim + x) = buf[ idx++ ];*/
       std::memcpy( startPos, buf, sizeof(Float64) * planeSize );
   }
 
@@ -278,18 +270,10 @@ void InverseTransform3D( Float64* signal,
   for( Int64 z = 0; z < zDim; z++ )
   {
     Float64* startPos = signal + z * planeSize;
-    /*Int64 idx = 0;
-    for( Int64 y = 0; y < xyDim; y++ )
-      for( Int64 x = 0; x < xyDim; x++ )
-        buf[ idx++ ] = *(startPos + y * xyDim + x);*/
     std::memcpy( buf, startPos, sizeof(Float64) * planeSize );
 
     InverseTransform2D( buf, xyDim, xyLevel );
 
-    /*idx = 0;
-    for( Int64 y = 0; y < xyDim; y++ )
-      for( Int64 x = 0; x < xyDim; x++ )
-        *(startPos + y * xyDim + x) = buf[ idx++ ];*/
     std::memcpy( startPos, buf, sizeof(Float64) * planeSize );
   }
 
