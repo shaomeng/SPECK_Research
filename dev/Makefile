@@ -23,8 +23,8 @@ wavelet.o: wavelet.cpp wavelet.h
 	$(CXX) $(CFLAGS) -c wavelet.cpp -o wavelet.o
 
 bitbuffer.o: BitBuffer.cpp BitBuffer.h
-	$(CXX) $(CFLAGS) -c BitBuffer.cpp -o BitBuffer.o
+	$(CXX) $(CFLAGS) -c BitBuffer.cpp -o bitbuffer.o
 
 bitbuffer: BitBuffer.cpp BitBuffer.h
-	$(CXX) $(CFLAGS) BitBuffer.cpp -o BitBuffer
+	$(CXX) $(CFLAGS) BitBuffer.cpp -o bitbuffer
 
