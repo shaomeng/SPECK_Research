@@ -6,7 +6,7 @@ ifeq ($(ARCH), Darwin)
   QCC_INSTALL=/Users/shaomeng/Install/QccPack-0.61
   CC=clang
   CXX=clang++
-  CFLAGS=-g -Wall -Wno-c++11-extensions
+  CFLAGS=-g -Wall -std=c++11
   LDFLAGS=
 else
   QCC_INSTALL=/Users/shaomeng/Install/QccPack-0.61
@@ -20,10 +20,10 @@ speck: wavelet.o speck.cpp speck.h
 	$(CXX) $(CFLAGS) -DHAVE_SPECK -I$(QCC_INSTALL)/include bin/libQccPack.a wavelet.o speck.cpp -o bin/speck
 
 wavelets.o: Wavelets.cpp Wavelets.h
-	$(CXX) $(CFLAGS) -c Wavelets.cpp -o Wavelets.o
+	$(CXX) $(CFLAGS) -c Wavelets.cpp -o wavelets.o
 
 wavelets: Wavelets.cpp Wavelets.h
-	$(CXX) $(CFLAGS) Wavelets.cpp -o Wavelets
+	$(CXX) $(CFLAGS) Wavelets.cpp -o wavelets
 
 bitbuffer.o: BitBuffer.cpp BitBuffer.h
 	$(CXX) $(CFLAGS) -c BitBuffer.cpp -o bitbuffer.o

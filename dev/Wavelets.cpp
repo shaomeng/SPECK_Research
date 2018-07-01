@@ -1,6 +1,9 @@
 #include <cstdio>
 #include <cstdlib>
 #include <cstring>
+#include <ctime>
+#include <cmath>
+#include <iostream>
 
 #include "Wavelets.h"
 
@@ -309,18 +312,31 @@ void Wavelets::InverseTransform3D( T*       signal,
     delete[] buf; 
 }
 
-/*
 int main()
 {
     Int64 N = 32;
-    Float64* signal = new Float64[ N * N * N ];
-    for( Int64 i = 0; i < N * N * N; i++ )
-        signal[i] = i * 0.1;
+    Float32* signal = new Float32[ N * N * N ];
+    Float32* orig   = new Float32[ N * N * N ];
 
-    ForwardTransform3D( signal, N, N, 2, 1 );
-    InverseTransform3D( signal, N, N, 2, 1 );
-    print_3D_data( signal, N, N, N );
+    std::srand(std::time(nullptr)); 
+
+    for( Int64 i = 0; i < N * N * N; i++ )
+    {
+        signal[i] = std::rand() % 10000 / 100.0;
+        orig[i]   = signal[i];
+    }
+
+    Wavelets w;
+    w.ForwardTransform3D( signal, N, N, 2, 1 );
+    w.InverseTransform3D( signal, N, N, 2, 1 );
+    for( Int64 i = 0; i < N*N*N; i++ )
+        if( std::abs(orig[i] - signal[i]) > 0.0001 )
+        {
+            std::cout << "orig           signal" << std::endl;
+            std::cout << orig[i] << "    " << signal[i] << std::endl;
+        }
 
     delete[] signal;
+    delete[] orig;
 }
-*/
+
