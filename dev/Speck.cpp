@@ -1,30 +1,33 @@
-#include "speck.h" 
+#include "Speck.h" 
 
-using namespace wavelet;
+#include <iostream>
+#include <cmath>
+#include <climits>
 
-#define QCCSPECK3D_NUM_CONTEXTS 6
-static const int QccSPECK3DNumSymbols[] = { 2, 2, 2, 2, 2, 2 };
 
+
+/*------------------------------------------------------------------------*/
 template< typename T  >
-Float64 makePositive( T* signal, std::vector<bool> &positiveStateArray, Int64 length )
+bool Speck::MakePositive( T*                   signal, 
+                          Int64                length,     
+                          std::vector<bool>&   positiveStateArray, 
+                          T&                   maxMagnitude );
 {
-  Float64 maxMagnitude = -MAXFLOAT;   // MAXFLOAT is defined from QccPack
+    T maxmag = -std::numeric_limits<T>::max();
 
-	/* assign positiveStateArray to be all "trues" */
-	positiveStateArray.assign( length, true );
+    /* assign positiveStateArray to be all "trues" */
+    //positiveStateArray.assign( length, true );
 
-	for( Int64 i = 0; i < length; i++ )
-  {
-		if( signal[i] < 0 )
-		{
-			positiveStateArray[i] = false;
-			signal[i] *= -1.0;
-		}
-    if( signal[i] >  maxMagnitude )
-      maxMagnitude = signal[i];
-  }
-  
-  return maxMagnitude;
+    for( Int64 i = 0; i < length; i++ )
+    {
+        positiveStateArray[i] = signal[i] < 0      ? false : true;
+        signal[i]             = signal[i] > 0      ? signal[i] : -signal[i];
+        maxmag                = signal[i] > maxmag ? signal[i] : maxmag;
+    }
+
+    maxMagnitude = maxmag;
+
+    return true;
 }
 
 template< typename T >
