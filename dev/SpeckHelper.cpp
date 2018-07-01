@@ -1,41 +1,44 @@
-#include "Speck.h" 
+#include "SpeckHelper.h" 
 
 #include <iostream>
 #include <cmath>
-#include <climits>
+#include <limits>
 
 
 
 /*------------------------------------------------------------------------*/
 template< typename T  >
-bool Speck::MakePositive( T*                   signal, 
-                          Int64                length,     
-                          std::vector<bool>&   positiveStateArray, 
-                          T&                   maxMagnitude );
+bool SpeckHelper::MakePositive( T*                   signal, 
+                                Int64                length,     
+                                std::vector<bool>&   positiveStateArray, 
+                                T&                   maxMagnitude )
 {
-    T maxmag = -std::numeric_limits<T>::max();
-
-    /* assign positiveStateArray to be all "trues" */
-    //positiveStateArray.assign( length, true );
+    maxMagnitude = -std::numeric_limits<T>::max();
 
     for( Int64 i = 0; i < length; i++ )
     {
-        positiveStateArray[i] = signal[i] < 0      ? false : true;
-        signal[i]             = signal[i] > 0      ? signal[i] : -signal[i];
-        maxmag                = signal[i] > maxmag ? signal[i] : maxmag;
+        if( signal[i] < 0 )
+        {
+            positiveStateArray[i] = false;
+            signal[i]             = -signal[i]; 
+        }
+        else
+            positiveStateArray[i] = true;
+            
+        maxMagnitude = signal[i] > maxMagnitude ? signal[i] : maxMagnitude;
     }
-
-    maxMagnitude = maxmag;
 
     return true;
 }
 
 template< typename T >
-Float64 subtractMean( T* signal, Int64 length )
+bool SpeckHelper::SubtractMean( T*    signal, 
+                                Int64 length,
+                                T&    mean )
 {
-	Float64 sum = 0.0;
-	Float64 c   = 0.0;
-	Float64 y, t;
+	T sum = 0.0;
+	T c   = 0.0;
+	T y, t;
 	for( Int64 i = 0; i < length; i++ )
 	{
 		y = signal[i] - c;
@@ -44,14 +47,15 @@ Float64 subtractMean( T* signal, Int64 length )
 		sum = t;
 	}
 
-	Float64 mean = sum / static_cast<Float64>(length);
+	mean = sum / static_cast<T>(length);
 
 	for( Int64 i = 0; i < length; i++ )
 		signal[i] -= mean;
 
-	return mean;
+	return true;
 }
 
+#if 0
 //
 // QccSPECK3DEncode()
 //
@@ -136,3 +140,4 @@ int main()
   outputBuffer.type = QCCBITBUFFER_OUTPUT;
   QccBitBufferStart(&outputBuffer);
 }
+#endif

@@ -16,8 +16,8 @@ else
   LDFLAGS=
 endif
 
-speck: wavelet.o speck.cpp speck.h
-	$(CXX) $(CFLAGS) -DHAVE_SPECK -I$(QCC_INSTALL)/include bin/libQccPack.a wavelet.o speck.cpp -o bin/speck
+speckhelper.o: SpeckHelper.cpp SpeckHelper.h
+	$(CXX) $(CFLAGS) -c SpeckHelper.cpp -o speckhelper.o
 
 wavelets.o: Wavelets.cpp Wavelets.h
 	$(CXX) $(CFLAGS) -c Wavelets.cpp -o wavelets.o
