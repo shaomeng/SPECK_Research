@@ -11,13 +11,13 @@ template< typename T  >
 bool SpeckHelper::MakePositive( T*                   signal, 
                                 Int64                length,     
                                 std::vector<bool>&   positiveStateArray, 
-                                T&                   maxMagnitude )
+                                Int32&               maxCoefficientBits )
 {
-    maxMagnitude = -std::numeric_limits<T>::max();
+    T maxMagnitude = -std::numeric_limits<T>::max();
 
     for( Int64 i = 0; i < length; i++ )
     {
-        if( signal[i] < 0 )
+        if( signal[i] < 0.0 )
         {
             positiveStateArray[i] = false;
             signal[i]             = -signal[i]; 
@@ -27,6 +27,8 @@ bool SpeckHelper::MakePositive( T*                   signal,
             
         maxMagnitude = signal[i] > maxMagnitude ? signal[i] : maxMagnitude;
     }
+
+    maxCoefficientBits = (Int32)std::floor(std::log2(maxMagnitude));
 
     return true;
 }
