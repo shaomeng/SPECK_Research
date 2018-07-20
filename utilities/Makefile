@@ -6,22 +6,14 @@ ifeq ($(ARCH), Darwin)
   CC=clang
   CXX=clang++
   QCC_DIR=/Users/shaomeng/Install/QccPack-0.61
-	CFLAGS=
+  CFLAGS= -O3 -std=c99
   LDFLAGS=
 else
-  ifeq ($(USER), shaomeng)
-    CC=gcc
-    CXX=g++
-    QCC_DIR=/glade/u/home/shaomeng/lib_gnu/QccPack-0.61
-	  CFLAGS=
-    LDFLAGS=
-  else              # Alaska
-    CC=gcc
-    CXX=g++
-    QCC_DIR=/home/users/samuelli/Install/QccPack-0.61
-	  CFLAGS=-fsanitize=undefined -Wconversion -Wno-sign-conversion
-    LDFLAGS=-lm -lpthread
-  endif
+  CC=gcc
+  CXX=g++
+  QCC_DIR=/home/shaomeng/Install/QccPack-0.61-1
+  CFLAGS= -O3 -std=c99
+  LDFLAGS=
 endif
 
 INC_DIR=$(QCC_DIR)/include
@@ -43,7 +35,8 @@ raw2smallimagecubes: raw2smallimagecubes.c
 	$(CC) -O3 -std=c99 -o bin/raw2smallimagecubes -I$(INC_DIR) -L$(LIB_DIR) -lQccPack $(LDFLAGS) raw2smallimagecubes.c
 
 raw2imagecube: raw2imagecube.c
-	$(CC) -O3 -std=c99 -o bin/raw2imagecube $(CFLAGS) -I$(INC_DIR) -L$(LIB_DIR) -lQccPack $(LDFLAGS) raw2imagecube.c
+	#$(CC) -o bin/raw2imagecube $(CFLAGS) -I$(INC_DIR) -L$(LIB_DIR) -lQccPack $(LDFLAGS) raw2imagecube.c
+	$(CC) -o bin/raw2imagecube $(CFLAGS) -I$(INC_DIR) $(LDFLAGS) raw2imagecube.c $(QCC_DIR)/lib/libQccPack.a -lm -lpthread
 
 compareraw: compareraw.c
 	$(CC) -O3 -std=c99 -o bin/compareraw -lm compareraw.c

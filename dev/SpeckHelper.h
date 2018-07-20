@@ -1,12 +1,13 @@
 #include "Wavelets.h"
 
-#include<vector>
+#include <vector>
 
 using namespace SPECK;
 
 class SpeckHelper
 {
 public:
+
     //
     // This function does 3 things:
     //   1. Make input "signal" to have all positive values
@@ -15,9 +16,9 @@ public:
     //
     template< typename T  >
     bool MakePositive( T*                   signal, 
-                       Int64                length,     // signal length
+                       Int64                length,                 // signal length
                        std::vector<bool>&   positiveStateArray, 
-                       Int32&               maxCoefficientBits );
+                       Int32&               maxCoefficientBits );   // highest bit plane index
 
     //
     // This function takes in an input "signal," calculates its mean, 
