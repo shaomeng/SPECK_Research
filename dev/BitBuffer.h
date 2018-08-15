@@ -1,6 +1,8 @@
-#include "wavelet.h"
+#include "Wavelets.h"
 
-using namespace wavelet;
+#include <string>
+
+using namespace SPECK;
 
 
 //
@@ -14,7 +16,7 @@ struct BitStreamHeader
     UInt16   numCols;     // X-axis dimension
     UInt16   numRows;     // Y-axis dimension
     UInt16   numFrames;   // Z-axis dimension
-    Float64 dataMean;     // the mean value of the original data volume
+    Float64  dataMean;    // the mean value of the original data volume
     UInt8    maxCoefficientBits; // Indicates the precision, in number of bits, 
                                  // of the wavelet coefficient with the largest magnitude
 };  // End of struct BitStreamHeader
