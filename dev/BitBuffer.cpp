@@ -8,7 +8,7 @@
 BitBuffer::BitBuffer( const std::string& name )
 {
     fileName          = name;
-    buffer            = NULL;
+    buffer            = nullptr;
     Reset();
 }
 
@@ -20,7 +20,7 @@ BitBuffer::~BitBuffer()
 
 void BitBuffer::Reset()
 {
-    headerSize        = 0;  // Once header is specified, this is header's size.
+    headerSize        = sizeof(header);
     numOfBits         = 0;
     currentByte       = 0;
     bitsToGo          = 0;
@@ -28,7 +28,7 @@ void BitBuffer::Reset()
     if( buffer )
     {
         delete[] buffer;
-        buffer  = NULL;
+        buffer  = nullptr;
     }
 }
 
@@ -36,7 +36,7 @@ void BitBuffer::PrintSelf() const
 {
     unsigned char   printByte;
     unsigned char   printByteIdx  = headerSize;
-    Int16           printBitsToGo = 0;;
+    Int32           printBitsToGo = 0;;
 
     for( Int64 i = 0; i < numOfBits; i++ )
     {
@@ -65,7 +65,7 @@ InputBitBuffer::InputBitBuffer( const std::string& name ) : BitBuffer( name )
 bool InputBitBuffer::Start()
 {
     FILE* filePtr = std::fopen( fileName.c_str(), "r" );
-    if( filePtr == NULL )
+    if( filePtr == nullptr )
     {
         std::cerr << "Failed to open file: " << fileName << std::endl;
         return false;
@@ -74,7 +74,7 @@ bool InputBitBuffer::Start()
     Int64 size = std::ftell( filePtr );
     std::rewind( filePtr );
 
-    assert( buffer == NULL );
+    assert( buffer == nullptr );
     try
     {
         buffer = new unsigned char[ size ];
@@ -157,7 +157,7 @@ bool OutputBitBuffer::End()
         totalSize++;
 
     FILE* f = std::fopen( fileName.c_str(), "w" );
-    if( f == NULL )
+    if( f == nullptr )
     {
         std::cerr << "Failed to open file: " << fileName << std::endl;
         return false;
