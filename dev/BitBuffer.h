@@ -20,7 +20,13 @@ struct BitStreamHeader
     UInt16   numFrames;   // Z-axis dimension
     Float64  dataMean;    // the mean value of the original data volume
 
-    void PrintHeader() const;
+    void CopyToBuffer(         unsigned char* buf )  const;
+    void CopyFromBuffer( const unsigned char* buf );
+    void PrintHeader()   const;
+    Int64 GetSize() const
+    {
+        return 13;        // Needs to be manually changed if header content is changed.
+    }
 
 };  // End of struct BitStreamHeader
 

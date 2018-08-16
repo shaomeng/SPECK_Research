@@ -1,6 +1,7 @@
 #include "BitBuffer.h"
 #include <iostream>
 #include <cassert>
+#include <cstring>
 
 
 void BitStreamHeader::PrintHeader() const
@@ -12,6 +13,17 @@ void BitStreamHeader::PrintHeader() const
     std::cout << "  Original data mean:              " << dataMean << std::endl;
     std::cout << "  Max Coefficient Bits:            " << maxCoefficientBits << std::endl;
 }
+
+void BitStreamHeader::CopyToBuffer( unsigned char* buf ) const
+{
+    std::memcpy( buf,      &numLevelsXY, 1 );
+    std::memcpy( buf + 1,  &numLevelsZ,  1 );
+    std::memcpy( buf + 2,  &maxCoefficientBits,  1 );
+    std::memcpy( buf + 3,  &numCols,     2 );
+    std::memcpy( buf + 5,  &numRows,     2 );
+    std::memcpy( buf + 7,  &numFrames,   2 );
+    std::memcpy( buf + 9,  &dataMean,    4 );
+} 
 
 
 //
@@ -32,7 +44,7 @@ BitBuffer::~BitBuffer()
 
 void BitBuffer::Reset()
 {
-    headerSize        = 13;
+    headerSize        = header.GetSize();
     numOfBits         = 0;
     currentByte       = 0;
     bitsToGo          = 0;
@@ -180,23 +192,7 @@ bool OutputBitBuffer::End()
     if( numOfBits % 8 > 0 )
         totalSize++;
 
-    // copy header into buffer.
-    UInt8* p8 = (UInt8*)buffer;
-    *p8       = header.numLevelsXY;
-    p8++;
-    *p8       = header.numLevelsZ;
-    p8++;
-    *p8       = header.maxCoefficientBits;
-    p8++;
-    UInt16* p16  = (UInt16*)p8;
-    *p16         = header.numCols;
-    p16++;
-    *p16         = header.numRows;
-    p16++;
-    *p16         = header.numFrames;
-    p16++;
-    Float64* p64 = (Float64*)p16;
-    *p64         = header.dataMean;
+    header.CopyToBuffer( buffer );
 
     FILE* f = std::fopen( fileName.c_str(), "w" );
     if( f == nullptr )
@@ -233,13 +229,13 @@ bool OutputBitBuffer::PutBit( unsigned char bitValue )
 int main()
 {
     std::string filename = "test_buffer.bitstream";
-    Int32       numbits  = 9;
+    Int32       numbits  = 7;
 
     // write a bitstream to disk
     OutputBitBuffer  outbuf( filename );
     outbuf.header.numLevelsXY = 4;
     outbuf.header.numLevelsZ  = 3;
-    outbuf.header.maxCoefficientBits = 13;
+    outbuf.header.maxCoefficientBits = 11;
     outbuf.header.numCols     = 17;
     outbuf.header.numRows     = 12;
     outbuf.header.numFrames   = 53;

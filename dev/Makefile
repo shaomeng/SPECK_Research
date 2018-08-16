@@ -12,7 +12,7 @@ else
   QCC_INSTALL=/Users/shaomeng/Install/QccPack-0.61
   CC=gcc
   CXX=g++
-  CFLAGS=-g -Wall 
+  CFLAGS=-g -Wall -std=c++11
   LDFLAGS=
 endif
 
