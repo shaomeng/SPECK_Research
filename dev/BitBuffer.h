@@ -5,30 +5,36 @@
 using namespace SPECK;
 
 
-//
+// ------------------------------------------------------------------
 // Defines the header of a bit stream
 //   Reference: http://qccpack.sourceforge.net/Documentation/QccSPECK3DDecode.3.html
-//
+// ------------------------------------------------------------------
 struct BitStreamHeader
 {
-    UInt8    numLevelsZ;  // Number of levels of wavelet decomposition in Z direction
     UInt8    numLevelsXY; // Number of levels of wavelet decomposition in XY direction
+    UInt8    numLevelsZ;  // Number of levels of wavelet decomposition in Z direction
+    UInt8    maxCoefficientBits; // Indicates the precision, in number of bits, 
+                          // of the wavelet coefficient with the largest magnitude
     UInt16   numCols;     // X-axis dimension
     UInt16   numRows;     // Y-axis dimension
     UInt16   numFrames;   // Z-axis dimension
     Float64  dataMean;    // the mean value of the original data volume
-    UInt8    maxCoefficientBits; // Indicates the precision, in number of bits, 
-                                 // of the wavelet coefficient with the largest magnitude
+
+    void PrintHeader() const;
+
 };  // End of struct BitStreamHeader
 
 
+// ------------------------------------------------------------------
+// Base class for input and output bitbuffer
+// ------------------------------------------------------------------
 class BitBuffer
 {
 public:
     BitBuffer( const std::string& name );       // Constructor, specify file name
    ~BitBuffer();                                // Destructor
     void Reset();
-    void PrintSelf() const;                     // Caution: the last byte might not be correct.
+    void PrintBitstream() const;
 
     //
     // Each Start() call needs to be followed by an End(),
@@ -54,9 +60,9 @@ protected:
 };  // End of class BitBuffer
 
 
-//
-// Reads a bitstream from disk
-//
+// ------------------------------------------------------------------
+// InputBuffer: reads a bitstream from disk
+// ------------------------------------------------------------------
 class InputBitBuffer : public BitBuffer
 {
 public:
@@ -73,9 +79,9 @@ public:
 };  // End of class InputBitBuffer
 
 
-//
-// Outputs a bitstream to disk
-//
+// ------------------------------------------------------------------
+// OutputBuffer: outputs a bitstream to disk
+// ------------------------------------------------------------------
 class OutputBitBuffer : public BitBuffer
 {
 public:
