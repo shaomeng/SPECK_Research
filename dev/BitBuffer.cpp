@@ -7,22 +7,33 @@
 void BitStreamHeader::PrintHeader() const
 {
     std::cout << "Bitstream header info:" << std::endl;
-    printf("  Data volume dimension: %hu x %hu %hu .\n", numCols, numRows, numFrames );
-    std::cout << "  Wavelet transform levels in XY:  " << numLevelsXY << std::endl;
-    std::cout << "  Wavelet transform levels in Z:   " << numLevelsZ << std::endl;
-    std::cout << "  Original data mean:              " << dataMean << std::endl;
-    std::cout << "  Max Coefficient Bits:            " << maxCoefficientBits << std::endl;
+    printf("  Data volume dimension          :  %hu x %hu x %hu\n", numCols, numRows, numFrames );
+    printf("  Wavelet transform levels in XY :  %hhu\n", numLevelsXY );
+    printf("  Wavelet transform levels in Z  :  %hhu\n", numLevelsZ  );
+    printf("  Max coefficient bits           :  %hhu\n", maxCoefficientBits );
+    printf("  Original data mean             :  %f\n", dataMean );
 }
 
 void BitStreamHeader::CopyToBuffer( unsigned char* buf ) const
 {
-    std::memcpy( buf,      &numLevelsXY, 1 );
-    std::memcpy( buf + 1,  &numLevelsZ,  1 );
-    std::memcpy( buf + 2,  &maxCoefficientBits,  1 );
-    std::memcpy( buf + 3,  &numCols,     2 );
-    std::memcpy( buf + 5,  &numRows,     2 );
-    std::memcpy( buf + 7,  &numFrames,   2 );
-    std::memcpy( buf + 9,  &dataMean,    4 );
+    std::memcpy( buf,      &numLevelsXY,        1  );
+    std::memcpy( buf + 1,  &numLevelsZ,         1  );
+    std::memcpy( buf + 2,  &maxCoefficientBits, 1  );
+    std::memcpy( buf + 3,  &numCols,            2  );
+    std::memcpy( buf + 5,  &numRows,            2  );
+    std::memcpy( buf + 7,  &numFrames,          2  );
+    std::memcpy( buf + 9,  &dataMean,           8  );
+} 
+
+void BitStreamHeader::CopyFromBuffer( const unsigned char* buf )
+{
+    std::memcpy( &numLevelsXY,        buf,      1  );
+    std::memcpy( &numLevelsZ,         buf + 1,  1  );
+    std::memcpy( &maxCoefficientBits, buf + 2,  1  );
+    std::memcpy( &numCols,            buf + 3,  2  );
+    std::memcpy( &numRows,            buf + 5,  2  );
+    std::memcpy( &numFrames,          buf + 7,  2  );
+    std::memcpy( &dataMean,           buf + 9,  8  );
 } 
 
 
@@ -124,6 +135,7 @@ bool InputBitBuffer::Start()
     std::fclose( filePtr );
 
     numOfBits  = (size - headerSize) * 8;
+    header.CopyFromBuffer( buffer );
     
     return true;
 }
@@ -229,7 +241,7 @@ bool OutputBitBuffer::PutBit( unsigned char bitValue )
 int main()
 {
     std::string filename = "test_buffer.bitstream";
-    Int32       numbits  = 7;
+    Int32       numbits  = 10;
 
     // write a bitstream to disk
     OutputBitBuffer  outbuf( filename );
@@ -256,15 +268,7 @@ int main()
     InputBitBuffer inbuf( filename );
     inbuf.Start();
     std::cout << "test input buffer: " << std::endl;
-    for( Int32 i = 0; i < numbits; i++ )
-    {
-        inbuf.GetBit( &a );
-        if( a == '\0' )
-            a = '0';
-        else 
-            a = '1';
-        std::cout << a << ", " << std::endl;
-    }
+    inbuf.header.PrintHeader();
     inbuf.PrintBitstream();
     inbuf.End();
 }

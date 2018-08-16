@@ -23,9 +23,10 @@ struct BitStreamHeader
     void CopyToBuffer(         unsigned char* buf )  const;
     void CopyFromBuffer( const unsigned char* buf );
     void PrintHeader()   const;
-    Int64 GetSize() const
+    Int64 GetSize()      const
     {
-        return 13;        // Needs to be manually changed if header content is changed.
+        return (sizeof(numLevelsXY) + sizeof(numLevelsZ) + sizeof(maxCoefficientBits) +
+                sizeof(numCols) + sizeof(numRows) + sizeof(numFrames) + sizeof(dataMean));
     }
 
 };  // End of struct BitStreamHeader
