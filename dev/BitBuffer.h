@@ -25,8 +25,7 @@ struct BitStreamHeader
     void PrintHeader()   const;
     Int64 GetSize()      const
     {
-        return (sizeof(numLevelsXY) + sizeof(numLevelsZ) + sizeof(maxCoefficientBits) +
-                sizeof(numCols) + sizeof(numRows) + sizeof(numFrames) + sizeof(dataMean));
+        return ( 3 * sizeof(UInt8) + 3 * sizeof(UInt16) + sizeof(Float64) );
     }
 
 };  // End of struct BitStreamHeader
