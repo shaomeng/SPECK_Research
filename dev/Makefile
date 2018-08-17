@@ -3,13 +3,11 @@ HOSTNAME=$(shell hostname)
 USER=$(shell whoami)
 
 ifeq ($(ARCH), Darwin)
-  QCC_INSTALL=/Users/shaomeng/Install/QccPack-0.61
   CC=clang
   CXX=clang++
   CFLAGS=-g -Wall -std=c++11
   LDFLAGS=
 else
-  QCC_INSTALL=/Users/shaomeng/Install/QccPack-0.61
   CC=gcc
   CXX=g++
   CFLAGS=-g -Wall -std=c++11
@@ -31,3 +29,5 @@ bitbuffer.o: BitBuffer.cpp BitBuffer.h
 bitbuffer: BitBuffer.cpp BitBuffer.h
 	$(CXX) $(CFLAGS) BitBuffer.cpp -o bitbuffer
 
+clean:
+	rm -f speckhelper.o wavelets.o wavelets bitbuffer.o bitbuffer test_buffer.bitstream
