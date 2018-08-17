@@ -42,6 +42,13 @@ void BitStreamHeader::CopyFromBuffer( const unsigned char* buf )
 //
 BitBuffer::BitBuffer( const std::string& name )
 {
+    // Make sure the data type sizes are as expected.
+    if( (sizeof(UInt8) != 1) || (sizeof(UInt16) != 2) || (sizeof(Float64) != 8) )
+    {
+        std::cerr << "One or more data types have unexpected sizes: "
+                  << "UInt8, UInt16, and Float64." << std::endl;
+    }
+
     fileName          = name;
     buffer            = nullptr;
     Reset();
