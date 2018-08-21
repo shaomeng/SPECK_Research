@@ -1,3 +1,6 @@
+#ifndef WAVELETPYRAMID_H
+#define WAVELETPYRAMID_H
+
 #include "Wavelets.h"
 
 using namespace SPECK;
@@ -60,3 +63,5 @@ public:
 private:
     const   WaveletPyramid<T>*   pyramid;       // The wavelet pyramid that this Set belongs to
 };
+
+#endif

@@ -1,6 +1,9 @@
 // auto-vectorization tutorials:
 // https://software.intel.com/sites/default/files/8c/a9/CompilerAutovectorizationGuide.pdf
 
+#ifndef WAVELETS_H
+#define WAVELETS_H
+
 namespace SPECK{
 
 #define ALPHA     -1.58615986717275
@@ -79,3 +82,5 @@ protected:
     void QccWAVCDF97SynthesisSymmetricEvenEven( T* signal, Int64 signal_length);
 };
 };
+
+#endif

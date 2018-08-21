@@ -1,5 +1,7 @@
-#include "Wavelets.h"
+#ifndef BITBUFFER_H
+#define BITBUFFER_H
 
+#include "Wavelets.h"
 #include <string>
 
 using namespace SPECK;
@@ -103,3 +105,5 @@ public:
     bool PutBit( unsigned char bitValue );      // zero means 0, non-zero means 1
 
 };  // End of class OutputBitBuffer
+
+#endif

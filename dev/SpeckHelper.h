@@ -1,5 +1,7 @@
-#include "Wavelets.h"
+#ifndef SPECKHELPER_H
+#define SPECKHELPER_H
 
+#include "Wavelets.h"
 #include <vector>
 
 using namespace SPECK;
@@ -30,5 +32,4 @@ public:
                        T&    mean );
 };
 
-
-
+#endif

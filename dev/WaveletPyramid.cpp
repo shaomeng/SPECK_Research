@@ -1,6 +1,7 @@
 #include "WaveletPyramid.h"
 #include <cmath>
 #include <cstring>
+#include <new>
 
 
 // ----------------------------------------------------------------------------
@@ -8,20 +9,21 @@
 // ----------------------------------------------------------------------------
 
 // Constructor
-template<typename T>
+template <typename T>
 WaveletPyramid<T>::WaveletPyramid( Int32 nc, Int32 nr, Int32 nf, Int32 nlxy, Int32 nlz )
     : numCols( nc ), numRows( nr ), numFrames( nf ), numLevelsXY( nlxy ), numLevelsZ( nlz )
 {
     coeffBuffer = nullptr;
 }
 
-template<typename T>
-const T* WaveletPyramid::GetCoeffBuffer() const
+template <typename T>
+const T* WaveletPyramid<T>::GetCoeffBuffer() const
 {
     return coeffBuffer;
 }
 
-bool WaveletPyramid::HandOverBuffer( T* buf, Int64 numVals )
+template <typename T>
+bool WaveletPyramid<T>::HandOverBuffer( T* buf, Int64 numVals )
 {
     if( numVals != (Int64)numCols * numRows * numFrames )
         return false;
@@ -33,7 +35,8 @@ bool WaveletPyramid::HandOverBuffer( T* buf, Int64 numVals )
     return true;
 }
 
-bool WaveletPyramid::HandOverBuffer( const float* buf, Int64 numVals )
+template <typename T>
+bool WaveletPyramid<T>::CopyOverBuffer( const float* buf, Int64 numVals )
 {
     if( numVals != (Int64)numCols * numRows * numFrames )
         return false;
@@ -51,7 +54,8 @@ bool WaveletPyramid::HandOverBuffer( const float* buf, Int64 numVals )
     return true;
 }
 
-bool WaveletPyramid::HandOverBuffer( const double* buf, Int64 numVals )
+template <typename T>
+bool WaveletPyramid<T>::CopyOverBuffer( const double* buf, Int64 numVals )
 {
     if( numVals != (Int64)numCols * numRows * numFrames )
         return false;
@@ -79,11 +83,15 @@ bool WaveletPyramid::HandOverBuffer( const double* buf, Int64 numVals )
 // ----------------------------------------------------------------------------
 
 // Constructor
-Set::Set( const WaveletPyramid* P, Int32 sx, Int32 dx, Int32 sy, Int32 dy, Int32 sz, Int32 dz) 
-   : pyramid( p ), startX( sx ), dimX( dx ), startY( sy ), dimY( dy ), startZ( sz ), dimZ( dz )
+template <typename T>
+Set<T>::Set( const WaveletPyramid<T>* p, Int32 sx,      Int32 dx, 
+                                         Int32 sy,      Int32 dy, 
+                                         Int32 sz,      Int32 dz ) 
+    : startX( sx ), dimX( dx ), startY( sy ), dimY( dy ), startZ( sz ), dimZ( dz ), pyramid( p )
 {}
 
-bool Set::IsSignificant( Int32 n )
+template <typename T>
+bool Set<T>::IsSignificant( Int32 n ) const
 {
     T   threshold   = std::pow( 2.0, double(n) );
     T*  buf         = new T[ dimX ];
@@ -91,8 +99,8 @@ bool Set::IsSignificant( Int32 n )
     for( Int32 z = startZ; z < startZ + dimZ; z++ )
         for( Int32 y = startY; y < startY + dimY; y++ )
         {
-            std::memcpy( buf, coeffs + z * pyramid.numCols * pyramid.Rows +
-                                       y * pyramid.numCols + startX, sizeof(T) * dimX );
+            std::memcpy( buf, coeffs + z * pyramid->numCols * pyramid->numRows +
+                                       y * pyramid->numCols + startX, sizeof(T) * dimX );
             for( Int32 x = 0; x < dimX; x++ )
                 if( buf[x] > threshold )
                 {
@@ -107,7 +115,7 @@ bool Set::IsSignificant( Int32 n )
 
 
 // Explicit Template Instantiation
-class template WaveletPyramid<float>;
-class template WaveletPyramid<double>;
-class template Set<float>;
-class template Set<double>;
+template class WaveletPyramid<float>;
+template class WaveletPyramid<double>;
+template class Set<float>;
+template class Set<double>;
