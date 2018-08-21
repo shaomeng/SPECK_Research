@@ -29,5 +29,8 @@ bitbuffer.o: BitBuffer.cpp BitBuffer.h
 bitbuffer: BitBuffer.cpp BitBuffer.h
 	$(CXX) $(CFLAGS) BitBuffer.cpp -o bitbuffer
 
+waveletpyramid.o: WaveletPyramid.cpp Wavelets.h
+	$(CXX) $(CFLAGS) -c WaveletPyramid.cpp -o waveletpyramid.o
+
 clean:
 	rm -f speckhelper.o wavelets.o wavelets bitbuffer.o bitbuffer test_buffer.bitstream
