@@ -62,6 +62,9 @@ public:
                Int32  sy,           Int32 dy,
                Int32  sz,           Int32 dz );
 
+    // Copy Constructor
+    Set( const Set& set2 );
+
     bool    IsSignificant( Int32 n ) const;     // Is this set significant wrt n
 
     void    Activate( const WaveletPyramid<T>*   p,
@@ -71,10 +74,12 @@ public:
     bool    IsActive() const;
     void    Deactivate();
 
-private:
+    const   WaveletPyramid<T>*   GetPyramid() const;
+
+protected:
     const   WaveletPyramid<T>*   pyramid;       // The wavelet pyramid that this Set belongs to
     bool    active;                             // If true, this Set contains valid info.
-                                                // Otherwise, it could be reused.
+                                                //   Otherwise, it could be activated and reused.
 };
 
 #endif

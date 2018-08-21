@@ -103,6 +103,17 @@ Set<T>::Set( const WaveletPyramid<T>*   p,
     active  = true;
 }
 
+// Copy Constructor
+template <typename T>
+Set<T>::Set( const Set& set2 )
+{
+    pyramid = set2.GetPyramid();
+    startX  = set2.startX;      dimX = set2.dimX;
+    startY  = set2.startY;      dimY = set2.dimY;
+    startZ  = set2.startZ;      dimZ = set2.dimZ;
+    active  = set2.IsActive();
+}
+
 template <typename T>
 bool Set<T>::IsSignificant( Int32 n ) const
 {
@@ -150,6 +161,12 @@ void Set<T>::Activate( const WaveletPyramid<T>*     p,
     startY  = sy;        dimY = dy;  
     startZ  = sz;        dimZ = dz;
     active  = true;
+}
+
+template <typename T>
+const Set<T>::WaveletPyramid<T>* GetPyramid() const
+{
+    return pyramid;
 }
 
 
