@@ -164,7 +164,7 @@ void Set<T>::Activate( const WaveletPyramid<T>*     p,
 }
 
 template <typename T>
-const Set<T>::WaveletPyramid<T>* GetPyramid() const
+const WaveletPyramid<T>* Set<T>::GetPyramid() const
 {
     return pyramid;
 }
