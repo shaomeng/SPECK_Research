@@ -23,6 +23,9 @@ public:
     // Constructor
     WaveletPyramid( Int32 nc, Int32 nr, Int32 nf, Int32 nlxy, Int32 nlz ); 
 
+    // Destructor
+    ~WaveletPyramid();
+
     // WaveletPyramid takes over the ownership of this buffer.
     // Whoever owned buf previously should NOT touch this buffer again.
     // Upon successful, returns true. Otherwise, returns false, and the 
@@ -49,19 +52,29 @@ template <typename T>
 class Set
 {
 public:
-    const Int32   startX, dimX;
-    const Int32   startY, dimY;
-    const Int32   startZ, dimZ;
+    Int32   startX, dimX;
+    Int32   startY, dimY;
+    Int32   startZ, dimZ;
     
     // Constructor
-    Set( const WaveletPyramid<T>* p,   Int32  sx, Int32 dx, 
-                                       Int32  sy, Int32 dy,
-                                       Int32  sz, Int32 dz );
+    Set( const WaveletPyramid<T>*   p,   
+               Int32  sx,           Int32 dx, 
+               Int32  sy,           Int32 dy,
+               Int32  sz,           Int32 dz );
 
     bool    IsSignificant( Int32 n ) const;     // Is this set significant wrt n
 
+    void    Activate( const WaveletPyramid<T>*   p,
+                            Int32  sx,           Int32 dx, 
+                            Int32  sy,           Int32 dy,
+                            Int32  sz,           Int32 dz );
+    bool    IsActive() const;
+    void    Deactivate();
+
 private:
     const   WaveletPyramid<T>*   pyramid;       // The wavelet pyramid that this Set belongs to
+    bool    active;                             // If true, this Set contains valid info.
+                                                // Otherwise, it could be reused.
 };
 
 #endif

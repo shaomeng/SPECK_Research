@@ -16,6 +16,13 @@ WaveletPyramid<T>::WaveletPyramid( Int32 nc, Int32 nr, Int32 nf, Int32 nlxy, Int
     coeffBuffer = nullptr;
 }
 
+// Destructor
+template <typename T>
+WaveletPyramid<T>::~WaveletPyramid()
+{
+    delete[] coeffBuffer;
+}
+
 template <typename T>
 const T* WaveletPyramid<T>::GetCoeffBuffer() const
 {
@@ -36,7 +43,7 @@ bool WaveletPyramid<T>::HandOverBuffer( T* buf, Int64 numVals )
 }
 
 template <typename T>
-bool WaveletPyramid<T>::CopyOverBuffer( const float* buf, Int64 numVals )
+bool WaveletPyramid<T>::CopyOverBuffer( const Float32* buf, Int64 numVals )
 {
     if( numVals != (Int64)numCols * numRows * numFrames )
         return false;
@@ -55,7 +62,7 @@ bool WaveletPyramid<T>::CopyOverBuffer( const float* buf, Int64 numVals )
 }
 
 template <typename T>
-bool WaveletPyramid<T>::CopyOverBuffer( const double* buf, Int64 numVals )
+bool WaveletPyramid<T>::CopyOverBuffer( const Float64* buf, Int64 numVals )
 {
     if( numVals != (Int64)numCols * numRows * numFrames )
         return false;
@@ -84,11 +91,17 @@ bool WaveletPyramid<T>::CopyOverBuffer( const double* buf, Int64 numVals )
 
 // Constructor
 template <typename T>
-Set<T>::Set( const WaveletPyramid<T>* p, Int32 sx,      Int32 dx, 
-                                         Int32 sy,      Int32 dy, 
-                                         Int32 sz,      Int32 dz ) 
-    : startX( sx ), dimX( dx ), startY( sy ), dimY( dy ), startZ( sz ), dimZ( dz ), pyramid( p )
-{}
+Set<T>::Set( const WaveletPyramid<T>*   p, 
+                   Int32 sx,            Int32 dx, 
+                   Int32 sy,            Int32 dy, 
+                   Int32 sz,            Int32 dz ) 
+{
+    pyramid = p;
+    startX  = sx;        dimX = dx;
+    startY  = sy;        dimY = dy;  
+    startZ  = sz;        dimZ = dz;
+    active  = true;
+}
 
 template <typename T>
 bool Set<T>::IsSignificant( Int32 n ) const
@@ -113,9 +126,35 @@ bool Set<T>::IsSignificant( Int32 n ) const
     return false;
 }
 
+template <typename T>
+bool Set<T>::IsActive() const
+{
+    return active;
+}
+
+template <typename T>
+void Set<T>::Deactivate()
+{
+    pyramid = nullptr;
+    active  = false;
+}
+
+template <typename T>
+void Set<T>::Activate( const WaveletPyramid<T>*     p,
+                             Int32 sx,              Int32 dx, 
+                             Int32 sy,              Int32 dy, 
+                             Int32 sz,              Int32 dz ) 
+{
+    pyramid = p;
+    startX  = sx;        dimX = dx;
+    startY  = sy;        dimY = dy;  
+    startZ  = sz;        dimZ = dz;
+    active  = true;
+}
+
 
 // Explicit Template Instantiation
-template class WaveletPyramid<float>;
-template class WaveletPyramid<double>;
-template class Set<float>;
-template class Set<double>;
+template class WaveletPyramid<Float32>;
+template class WaveletPyramid<Float64>;
+template class Set<Float32>;
+template class Set<Float64>;
