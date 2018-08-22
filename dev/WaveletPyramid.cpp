@@ -170,9 +170,71 @@ const WaveletPyramid<T>* Set<T>::GetPyramid() const
 template <typename T>
 std::vector<Set<T> > Set<T>::Partition() const
 {
-    std::vector<Set<T> > subsets( 8 );
+    //    y2      z2
+    //     |     /
+    //     |    /
+    //    y1   z1
+    //     |  /
+    //     | /
+    //    xyz0----x1----x2
 
-    return subsets;    
+    Int32  x[3] = { startX, startX + dimX / 2, startX + dimX };
+    Int32  y[3] = { startY, startY + dimY / 2, startY + dimY };
+    Int32  z[3] = { startZ, startZ + dimZ / 2, startZ + dimZ }; 
+
+    Set<T> subsets[8];
+    subsets[0].Activate( pyramid, x[0], x[1] - x[0],
+                                  y[0], y[1] - y[0],
+                                  z[0], z[1] - z[0] );
+    subsets[1].Activate( pyramid, x[1], x[2] - x[1],
+                                  y[0], y[1] - y[0],
+                                  z[0], z[1] - z[0] );
+    subsets[2].Activate( pyramid, x[0], x[1] - x[0],
+                                  y[1], y[2] - y[1],
+                                  z[0], z[1] - z[0] );
+    subsets[3].Activate( pyramid, x[1], x[2] - x[1],
+                                  y[1], y[2] - y[1],
+                                  z[0], z[1] - z[0] );
+
+    subsets[4].Activate( pyramid, x[0], x[1] - x[0],
+                                  y[0], y[1] - y[0],
+                                  z[1], z[2] - z[1] );
+    subsets[5].Activate( pyramid, x[1], x[2] - x[1],
+                                  y[0], y[1] - y[0],
+                                  z[1], z[2] - z[1] );
+    subsets[6].Activate( pyramid, x[0], x[1] - x[0],
+                                  y[1], y[2] - y[1],
+                                  z[1], z[2] - z[1] );
+    subsets[7].Activate( pyramid, x[1], x[2] - x[1],
+                                  y[1], y[2] - y[1],
+                                  z[1], z[2] - z[1] );
+
+    for( Int32 i = 7; i > 0; i++ )
+    {
+        for( Int32 j = 0; j < i; j++ )
+        {
+            if( subsets[i].CoverSameBlock( subsets[j] ) )
+            {
+                subsets[i].Deactivate();
+                break;
+            }
+        }
+    }
+
+    std::vector<Set<T> > activeSets;
+    for( Int32 i = 0; i < 8; i++ )
+        if( subsets[i].IsActive() )
+            activeSets.push_back( subsets[i] );
+
+    return activeSets; 
+}
+
+template <typename T>
+bool Set<T>::CoverSameBlock( const Set<T>& that ) const
+{
+    return ( (startX == that.startX) && (dimX == that.dimX) &&
+             (startY == that.startY) && (dimY == that.dimY) &&
+             (startZ == that.startZ) && (dimZ == that.dimZ)    );
 }
 
 

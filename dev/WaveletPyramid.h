@@ -75,7 +75,7 @@ public:
                             Int32  sz,           Int32 dz );
     bool    IsActive() const;
     void    Deactivate();
-
+    bool    CoverSameBlock( const Set<T>& )   const;
     const   WaveletPyramid<T>*   GetPyramid() const;
 
     // Partition this Set into up to eight subsets
