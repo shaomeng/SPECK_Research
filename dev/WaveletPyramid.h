@@ -2,6 +2,7 @@
 #define WAVELETPYRAMID_H
 
 #include "Wavelets.h"
+#include <vector>
 
 using namespace SPECK;
 
@@ -56,8 +57,11 @@ public:
     Int32   startX, dimX;
     Int32   startY, dimY;
     Int32   startZ, dimZ;
+
+    // Default Constructor
+    Set();
     
-    // Constructor
+    // Custom Constructor
     Set( const WaveletPyramid<T>*   p,   
                Int32  sx,           Int32 dx, 
                Int32  sy,           Int32 dy,
@@ -73,6 +77,9 @@ public:
     void    Deactivate();
 
     const   WaveletPyramid<T>*   GetPyramid() const;
+
+    // Partition this Set into up to eight subsets
+    std::vector<Set<T> >    Partition() const;
 
 protected:
     const   WaveletPyramid<T>*   pyramid;       // The wavelet pyramid that this Set belongs to

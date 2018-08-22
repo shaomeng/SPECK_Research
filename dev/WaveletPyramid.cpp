@@ -87,7 +87,18 @@ bool WaveletPyramid<T>::CopyOverBuffer( const Float64* buf, Int64 numVals )
 // Class Set 
 // ----------------------------------------------------------------------------
 
-// Constructor
+// Default Constructor
+template <typename T>
+Set<T>::Set()
+{
+    pyramid = nullptr;
+    startX  = 0;        dimX = 0;
+    startY  = 0;        dimY = 0;  
+    startZ  = 0;        dimZ = 0;
+    active  = false;
+}
+
+// Custom Constructor
 template <typename T>
 Set<T>::Set( const WaveletPyramid<T>*   p, 
                    Int32 sx,            Int32 dx, 
@@ -154,6 +165,14 @@ template <typename T>
 const WaveletPyramid<T>* Set<T>::GetPyramid() const
 {
     return pyramid;
+}
+
+template <typename T>
+std::vector<Set<T> > Set<T>::Partition() const
+{
+    std::vector<Set<T> > subsets( 8 );
+
+    return subsets;    
 }
 
 
