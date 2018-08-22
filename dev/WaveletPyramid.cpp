@@ -83,8 +83,6 @@ bool WaveletPyramid<T>::CopyOverBuffer( const Float64* buf, Int64 numVals )
 
 
 
-
-
 // ----------------------------------------------------------------------------
 // Class Set 
 // ----------------------------------------------------------------------------
@@ -101,17 +99,6 @@ Set<T>::Set( const WaveletPyramid<T>*   p,
     startY  = sy;        dimY = dy;  
     startZ  = sz;        dimZ = dz;
     active  = true;
-}
-
-// Copy Constructor
-template <typename T>
-Set<T>::Set( const Set& set2 )
-{
-    pyramid = set2.GetPyramid();
-    startX  = set2.startX;      dimX = set2.dimX;
-    startY  = set2.startY;      dimY = set2.dimY;
-    startZ  = set2.startZ;      dimZ = set2.dimZ;
-    active  = set2.IsActive();
 }
 
 template <typename T>

@@ -42,6 +42,7 @@ public:
 
 protected:
     T*            coeffBuffer;
+
 };
 
 
@@ -61,9 +62,6 @@ public:
                Int32  sx,           Int32 dx, 
                Int32  sy,           Int32 dy,
                Int32  sz,           Int32 dz );
-
-    // Copy Constructor
-    Set( const Set& set2 );
 
     bool    IsSignificant( Int32 n ) const;     // Is this set significant wrt n
 
