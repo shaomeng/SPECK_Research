@@ -77,14 +77,18 @@ public:
     void    Deactivate();
     bool    CoverSameBlock( const Set<T>& )   const;
     const   WaveletPyramid<T>*   GetPyramid() const;
+    bool    IsSingleVertex()                  const;
 
     // Partition this Set into up to eight subsets
     std::vector<Set<T> >    Partition() const;
+
+    void    PrintInfo() const;
 
 protected:
     const   WaveletPyramid<T>*   pyramid;       // The wavelet pyramid that this Set belongs to
     bool    active;                             // If true, this Set contains valid info.
                                                 //   Otherwise, it could be activated and reused.
 };
+
 
 #endif

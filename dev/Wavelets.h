@@ -18,6 +18,7 @@ using Float32 = float;
 using Int64   = long int;
 using Int32   = int;
 using Int16   = short int;
+using UInt32  = unsigned int;
 using UInt16  = unsigned short;
 using UInt8   = unsigned char;
 

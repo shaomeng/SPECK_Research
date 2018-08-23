@@ -2,6 +2,8 @@
 #include <cmath>
 #include <cstring>
 #include <new>
+#include <cstdio>
+#include <forward_list>
 
 
 // ----------------------------------------------------------------------------
@@ -182,7 +184,7 @@ std::vector<Set<T> > Set<T>::Partition() const
     Int32  y[3] = { startY, startY + dimY / 2, startY + dimY };
     Int32  z[3] = { startZ, startZ + dimZ / 2, startZ + dimZ }; 
 
-    Set<T> subsets[8];
+    std::vector<Set<T> > subsets( 8 );
     subsets[0].Activate( pyramid, x[0], x[1] - x[0],
                                   y[0], y[1] - y[0],
                                   z[0], z[1] - z[0] );
@@ -209,24 +211,24 @@ std::vector<Set<T> > Set<T>::Partition() const
                                   y[1], y[2] - y[1],
                                   z[1], z[2] - z[1] );
 
-    for( Int32 i = 7; i > 0; i++ )
+    for( Int32 i = 7; i >= 0; i-- )
     {
-        for( Int32 j = 0; j < i; j++ )
+        if( (subsets[i].dimX == 0) || (subsets[i].dimY == 0) || (subsets[i].dimZ == 0) )
+            subsets[i].Deactivate();
+        else
         {
-            if( subsets[i].CoverSameBlock( subsets[j] ) )
+            for( Int32 j = 0; j < i; j++ )
             {
-                subsets[i].Deactivate();
-                break;
+                if( subsets[i].CoverSameBlock( subsets[j] ) )
+                {
+                    subsets[i].Deactivate();
+                    break;
+                }
             }
         }
     }
 
-    std::vector<Set<T> > activeSets;
-    for( Int32 i = 0; i < 8; i++ )
-        if( subsets[i].IsActive() )
-            activeSets.push_back( subsets[i] );
-
-    return activeSets; 
+    return subsets; 
 }
 
 template <typename T>
@@ -237,9 +239,41 @@ bool Set<T>::CoverSameBlock( const Set<T>& that ) const
              (startZ == that.startZ) && (dimZ == that.dimZ)    );
 }
 
+template <typename T>
+bool Set<T>::IsSingleVertex() const
+{
+    return ( (dimX == 1) && (dimY == 1) && (dimZ == 1) );
+}
+
+template <typename T>
+void Set<T>::PrintInfo() const
+{
+    printf("  (%d -- %d, %d -- %d, %d -- %d)\n", startX, startX + dimX, 
+                                                 startY, startY + dimY, 
+                                                 startZ, startZ + dimZ );
+}
+
 
 // Explicit Template Instantiation
 template class WaveletPyramid<Float32>;
 template class WaveletPyramid<Float64>;
 template class Set<Float32>;
 template class Set<Float64>;
+
+
+int main()
+{
+    Int32 dimX = 2, dimY = 2, dimZ = 1;
+
+    WaveletPyramid<Float32> pyramid( dimX, dimY, dimZ, 3, 3 );
+
+    Set<Float32> set1( &pyramid, 0, dimX, 0, dimY, 0, dimZ );
+
+    std::forward_list<Set<Float32> > allSets = { set1 };
+    
+    std::vector<Set<Float32> > sets = set1.Partition();   
+    allSets.insert_after( allSets.cbefore_begin(), sets.cbegin(), sets.cend() );
+    allSets.remove_if( [](const Set<Float32>& s){ return !s.IsActive(); } );
+    for( const Set<Float32>& it : allSets )
+        it.PrintInfo();
+}
