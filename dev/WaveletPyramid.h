@@ -85,10 +85,9 @@ public:
     void    PrintInfo() const;
 
 protected:
-    const   WaveletPyramid<T>*   pyramid;       // The wavelet pyramid that this Set belongs to
-    bool    active;                             // If true, this Set contains valid info.
-                                                //   Otherwise, it could be activated and reused.
-    // TODO: use null pyramid pointer to indicate active or not.
+    const   WaveletPyramid<T>*   pyramid;   // The wavelet pyramid that this Set belongs to. 
+                                            //   If NULL, this Set is inactive, 
+                                            //   and could be activated and reused.
 };
 
 

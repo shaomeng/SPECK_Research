@@ -97,7 +97,6 @@ Set<T>::Set()
     startX  = 0;        dimX = 0;
     startY  = 0;        dimY = 0;  
     startZ  = 0;        dimZ = 0;
-    active  = false;
 }
 
 // Custom Constructor
@@ -111,7 +110,6 @@ Set<T>::Set( const WaveletPyramid<T>*   p,
     startX  = sx;        dimX = dx;
     startY  = sy;        dimY = dy;  
     startZ  = sz;        dimZ = dz;
-    active  = true;
 }
 
 template <typename T>
@@ -140,14 +138,13 @@ bool Set<T>::IsSignificant( Int32 n ) const
 template <typename T>
 bool Set<T>::IsActive() const
 {
-    return active;
+    return (pyramid != nullptr);
 }
 
 template <typename T>
 void Set<T>::Deactivate()
 {
     pyramid = nullptr;
-    active  = false;
 }
 
 template <typename T>
@@ -160,7 +157,6 @@ void Set<T>::Activate( const WaveletPyramid<T>*     p,
     startX  = sx;        dimX = dx;
     startY  = sy;        dimY = dy;  
     startZ  = sz;        dimZ = dz;
-    active  = true;
 }
 
 template <typename T>
