@@ -207,10 +207,14 @@ std::vector<Set<T> > Set<T>::Partition() const
                                   y[1], y[2] - y[1],
                                   z[1], z[2] - z[1] );
 
+    bool deactiveFlag = false;
     for( Int32 i = 7; i >= 0; i-- )
     {
         if( (subsets[i].dimX == 0) || (subsets[i].dimY == 0) || (subsets[i].dimZ == 0) )
+        {
             subsets[i].Deactivate();
+            deactiveFlag = true;
+        }
         else
         {
             for( Int32 j = 0; j < i; j++ )
@@ -218,13 +222,23 @@ std::vector<Set<T> > Set<T>::Partition() const
                 if( subsets[i].CoverSameBlock( subsets[j] ) )
                 {
                     subsets[i].Deactivate();
+                    deactiveFlag = true;
                     break;
                 }
             }
         }
     }
 
-    return subsets; 
+    if( deactiveFlag )  // Copy over all the active sets
+    {
+        std::vector<Set<T> > activeSets;
+        for( auto it = subsets.cbegin(); it != subsets.cend(); ++it )
+            if( it->IsActive() )
+                activeSets.push_back( *it );
+        return activeSets;
+    }
+    else
+        return subsets; 
 }
 
 template <typename T>
@@ -236,9 +250,9 @@ bool Set<T>::CoverSameBlock( const Set<T>& that ) const
 }
 
 template <typename T>
-bool Set<T>::IsSingleVertex() const
+Int64 Set<T>::GetSize() const
 {
-    return ( (dimX == 1) && (dimY == 1) && (dimZ == 1) );
+    return ( Int64(dimX) * Int64(dimY) * Int64(dimZ) );
 }
 
 template <typename T>
@@ -269,7 +283,7 @@ int main()
     
     std::vector<Set<Float32> > sets = set1.Partition();   
     allSets.insert_after( allSets.cbefore_begin(), sets.cbegin(), sets.cend() );
-    allSets.remove_if( [](const Set<Float32>& s){ return !s.IsActive(); } );
+    //allSets.remove_if( [](const Set<Float32>& s){ return !s.IsActive(); } );
     for( const Set<Float32>& it : allSets )
         it.PrintInfo();
 }

@@ -36,4 +36,4 @@ waveletpyramid: WaveletPyramid.cpp Wavelets.h
 	$(CXX) $(CFLAGS) WaveletPyramid.cpp -o waveletpyramid
 
 clean:
-	rm -f speckhelper.o wavelets.o wavelets bitbuffer.o bitbuffer test_buffer.bitstream waveletpyramid.o
+	rm -f speckhelper.o wavelets.o wavelets bitbuffer.o bitbuffer test_buffer.bitstream waveletpyramid.o waveletpyramid

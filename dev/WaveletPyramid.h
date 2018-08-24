@@ -77,7 +77,7 @@ public:
     void    Deactivate();
     bool    CoverSameBlock( const Set<T>& )   const;
     const   WaveletPyramid<T>*   GetPyramid() const;
-    bool    IsSingleVertex()                  const;
+    Int64   GetSize()                         const;
 
     // Partition this Set into up to eight subsets
     std::vector<Set<T> >    Partition() const;
