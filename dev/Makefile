@@ -1,18 +1,16 @@
 ARCH=$(shell uname)
 HOSTNAME=$(shell hostname)
-USER=$(shell whoami)
 
 ifeq ($(ARCH), Darwin)
   CC=clang
   CXX=clang++
   CFLAGS=-g -Wall -std=c++11
-  LDFLAGS=
 else
   CC=gcc
   CXX=g++
-  CFLAGS=-g -Wall -std=c++11
-  LDFLAGS=
 endif
+  
+CFLAGS=-g -Wall -std=c++11
 
 speckhelper.o: SpeckHelper.cpp SpeckHelper.h
 	$(CXX) $(CFLAGS) -c SpeckHelper.cpp -o speckhelper.o

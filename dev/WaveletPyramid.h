@@ -39,7 +39,7 @@ public:
     bool CopyOverBuffer( const float*  buf, Int64 numVals );
     bool CopyOverBuffer( const double* buf, Int64 numVals );
 
-    const   T*    GetCoeffBuffer() const;
+    const T*    GetCoeffBuffer() const;
 
 protected:
     T*            coeffBuffer;
@@ -75,9 +75,9 @@ public:
                             Int32  sz,           Int32 dz );
     bool    IsActive() const;
     void    Deactivate();
-    bool    CoverSameBlock( const Set<T>& )   const;
-    const   WaveletPyramid<T>*   GetPyramid() const;
-    Int64   GetSize()                         const;
+    bool    CoverSameBlock( const Set<T>& )    const;
+    const   WaveletPyramid<T>*    GetPyramid() const;
+    Int64   GetSize()                          const;
 
     // Partition this Set into up to eight subsets
     std::vector<Set<T> >    Partition() const;
