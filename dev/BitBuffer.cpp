@@ -16,24 +16,24 @@ void BitStreamHeader::PrintHeader() const
 
 void BitStreamHeader::CopyToBuffer( unsigned char* buf ) const
 {
-    std::memcpy( buf,      &numLevelsXY,        1  );
-    std::memcpy( buf + 1,  &numLevelsZ,         1  );
-    std::memcpy( buf + 2,  &maxCoefficientBits, 1  );
-    std::memcpy( buf + 3,  &numCols,            2  );
-    std::memcpy( buf + 5,  &numRows,            2  );
-    std::memcpy( buf + 7,  &numFrames,          2  );
-    std::memcpy( buf + 9,  &dataMean,           8  );
+    std::memcpy( buf,      &numLevelsXY,        sizeof(UInt8)  );
+    std::memcpy( buf + 1,  &numLevelsZ,         sizeof(UInt8)  );
+    std::memcpy( buf + 2,  &maxCoefficientBits, sizeof(UInt8)  );
+    std::memcpy( buf + 3,  &numCols,            sizeof(UInt16) );
+    std::memcpy( buf + 5,  &numRows,            sizeof(UInt16) );
+    std::memcpy( buf + 7,  &numFrames,          sizeof(UInt16) );
+    std::memcpy( buf + 9,  &dataMean,           sizeof(Float64));
 } 
 
 void BitStreamHeader::CopyFromBuffer( const unsigned char* buf )
 {
-    std::memcpy( &numLevelsXY,        buf,      1  );
-    std::memcpy( &numLevelsZ,         buf + 1,  1  );
-    std::memcpy( &maxCoefficientBits, buf + 2,  1  );
-    std::memcpy( &numCols,            buf + 3,  2  );
-    std::memcpy( &numRows,            buf + 5,  2  );
-    std::memcpy( &numFrames,          buf + 7,  2  );
-    std::memcpy( &dataMean,           buf + 9,  8  );
+    std::memcpy( &numLevelsXY,        buf,      sizeof(UInt8)  );
+    std::memcpy( &numLevelsZ,         buf + 1,  sizeof(UInt8)  );
+    std::memcpy( &maxCoefficientBits, buf + 2,  sizeof(UInt8)  );
+    std::memcpy( &numCols,            buf + 3,  sizeof(UInt16) );
+    std::memcpy( &numRows,            buf + 5,  sizeof(UInt16) );
+    std::memcpy( &numFrames,          buf + 7,  sizeof(UInt16) );
+    std::memcpy( &dataMean,           buf + 9,  sizeof(Float64));
 } 
 
 

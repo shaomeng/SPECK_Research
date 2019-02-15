@@ -24,11 +24,12 @@ void printSignal( T *signal, long signal_length){
 }
 
 /*------------------------------------------------------------------------*/
-int check_correct(float * arr1, float *arr2, unsigned int len){
+int check_correct(const float* arr1, const float* arr2, unsigned int len){
 	unsigned int i;
-	float epsilon = 0.0000000001;
+	float epsilon = 0.0000000001f;
 	for(i=0; i<len; i++)
-		if(arr1[i]-arr2[i]>epsilon) return 0;
+		if(std::abs(arr1[i]-arr2[i])>epsilon) 
+            return 0;
 	return 1;
 }
 

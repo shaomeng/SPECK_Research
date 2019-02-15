@@ -25,7 +25,7 @@ public:
     WaveletPyramid( Int32 nc, Int32 nr, Int32 nf, Int32 nlxy, Int32 nlz ); 
 
     // Destructor
-    ~WaveletPyramid();
+   ~WaveletPyramid();
 
     // WaveletPyramid takes over the ownership of this buffer.
     // Whoever owned buf previously should NOT touch this buffer again.
@@ -33,11 +33,10 @@ public:
     //   old buffer content stays the same.
     bool HandOverBuffer( T* buf, Int64 numVals );
 
-    // WaveletPyramid makes a copy of this buffer
-    // Upon successful, returns true. Otherwise, returns false, and the 
-    //   old buffer content may be corrupt.
-    bool CopyOverBuffer( const float*  buf, Int64 numVals );
-    bool CopyOverBuffer( const double* buf, Int64 numVals );
+    // WaveletPyramid makes a copy of an external
+    // Upon successful, returns true. Otherwise, returns false.
+    bool CopyOverBuffer( const Float32* buf, Int64 numVals );
+    bool CopyOverBuffer( const Float64* buf, Int64 numVals );
 
     const T*    GetCoeffBuffer() const;
 
