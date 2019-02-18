@@ -237,7 +237,7 @@ bool OutputBitBuffer::PutBit( unsigned char bitValue )
     if( bitsToGo == 0 )
     {
         buffer[ currentByteIdx++ ] = currentByte;
-        currentByte                = 0;
+        currentByte                = 0x00;
         bitsToGo = 8;
     }
 
