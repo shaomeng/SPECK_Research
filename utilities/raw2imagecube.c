@@ -17,7 +17,7 @@
 #define FLOAT_SIZE 4
 #endif
 
-#define USG_STRING "%d:num_cols %d:num_rows %d:num_frames %s:input_name (raw) %s:output_name (icb)"
+#define USG_STRING "%d:dim_x %d:dim_y %d:dim_z %s:input_name (raw) %s:output_name (icb)"
 
 
 int ImageCubeReadData( QccString filename, QccIMGImageCube* image_cube )

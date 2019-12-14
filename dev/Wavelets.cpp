@@ -54,6 +54,35 @@ void Wavelets::QccWAVCDF97AnalysisSymmetricEvenEven( T* signal, Int64 signal_len
         signal[index] /= (-EPSILON);
 }
 
+
+/*------------------------------------------------------------------------*/
+template <typename T>
+void Wavelets::QccWAVCDF97AnalysisSymmetricEvenOdd( T* signal, Int64 signal_length)
+{
+  Int64 index;
+  signal[0] += 2 * ALPHA * signal[1];
+
+  for (index = 2; index < signal_length; index += 2)
+    signal[index] += ALPHA * (signal[index - 1] + signal[index + 1]);
+  
+  for (index = 1; index < signal_length - 2; index += 2)
+    signal[index] += BETA * (signal[index + 1] + signal[index - 1]);
+
+  signal[signal_length - 1] += 2 * BETA * signal[signal_length - 2];
+  signal[0] += 2 * GAMMA * signal[1];
+
+  for (index = 2; index < signal_length; index += 2)
+    signal[index] += GAMMA * (signal[index - 1] + signal[index + 1]);
+  
+  for (index = 1; index < signal_length - 2; index += 2)
+    signal[index] = EPSILON * (signal[index] + DELTA * (signal[index + 1] + signal[index - 1]));
+
+  signal[signal_length - 1] = EPSILON * (signal[signal_length - 1] + 2 * DELTA * signal[signal_length - 2]);
+  
+  for (index = 0; index < signal_length; index += 2)
+    signal[index] /= (-EPSILON);
+}
+
 /*------------------------------------------------------------------------*/
 template <typename T>
 void Wavelets::QccWAVCDF97SynthesisSymmetricEvenEven( T* signal, Int64 signal_length)

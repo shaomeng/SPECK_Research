@@ -81,6 +81,9 @@ protected:
 
     template <typename T>
     void QccWAVCDF97SynthesisSymmetricEvenEven( T* signal, Int64 signal_length);
+
+    template <typename T>
+    void QccWAVCDF97AnalysisSymmetricEvenOdd( T* signal, Int64 signal_length);
 };
 };
 
